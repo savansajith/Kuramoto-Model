@@ -9,6 +9,9 @@ packages = [{include = "repl_nix_kuramoto_website"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 flask = "^3.0.3"
+matplotlib = "^3.9.0"
+numba = "^0.60.0"
+numpy = "^2.0.0"
 
 
 [build-system]
