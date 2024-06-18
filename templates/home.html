@@ -7,6 +7,7 @@
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;700;900&display=swap">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
     <style>
         body {
@@ -32,9 +33,9 @@
         }
 
         h2 {
-            font-size: 2em;
-            font-weight: 700; /* Bold weight for subheadings */
-            text-align: center;
+            text-align: left;
+            font-weight: 900;
+            font-size: 1.3em;
             margin-top: 50px;
         }
 
@@ -64,17 +65,18 @@
             max-width: 800px;
             margin: -100px auto 0 auto;
             padding: 20px;
-            background: #111; /* Dark gray background */
+            background: #000; /* Dark black background */
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             border-radius: 10px;
             position: relative;
             z-index: 1;
         }
 
+
         .intro {
             font-weight: 900;
             font-size: 1.3em;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .content {
@@ -95,14 +97,22 @@
 </div>
 
 <div id="container">
-    <p class="intro">Introduction:</p>
+    <h2 class="intro">Introduction</h2>
     <p class="content">The Kuramoto model, introduced by Yoshiki Kuramoto in 1975, is a mathematical concept used to explain synchronization in systems of connected oscillators. It is widely studied in physics, biology, and engineering, offering insights into how groups of oscillators synchronize their rhythms.</p>
     <p class="content">At its core, the Kuramoto model shows how individual oscillators, each with its own natural rhythm or frequency, can synchronize their phases over time. This synchronization occurs through interactions between the oscillators, which are influenced by the strength of their connections or coupling.</p>
     <p class="content">The model's simplicity lies in its ability to describe complex synchronization phenomena in a straightforward manner. By adjusting a few parameters, such as the coupling strength and the natural frequencies of the oscillators, researchers can simulate and understand various synchronization patterns seen in nature and technology.</p>
     <p class="content">In physics, the Kuramoto model has been used to study synchronization in systems ranging from pendulum clocks to superconducting Josephson junctions. In biology, it helps explain synchronized behavior in neural networks, firefly flashing patterns, and cricket chirping. In engineering, the model is applied to design synchronized systems, such as power grids and communication networks, to improve their efficiency and stability.</p>
     <p class="content">Overall, the Kuramoto model provides a valuable framework for understanding synchronization in complex systems, offering insights into collective behavior dynamics across different disciplines.</p>
-    <h2>Kuramoto Oscillator Equation:</h2>
-    <p class="content highlight">[Add the equation and its description here]</p>
+    <h2>Kuramoto Oscillator Equation</h2>
+    <div>
+        {% for eqs in eqs %}
+        <h3>{{eqs["order"]}}</h3>
+        <div>
+            \[{{eqs["eq"]}}\]
+        </div>
+        {% endfor %}
+    </div>
+    
     <button class="contact-button" style="text-align: center;">Contact Us</button>
 
 </div>

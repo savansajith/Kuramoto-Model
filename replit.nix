@@ -1,5 +1,6 @@
 {pkgs}: {
   deps = [
+    pkgs.glibcLocales
     pkgs.libcxx
     pkgs.tk
     pkgs.tcl
