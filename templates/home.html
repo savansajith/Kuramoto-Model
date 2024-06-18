@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuramoto Model</title>
 
@@ -105,16 +105,33 @@
     <p class="content">Overall, the Kuramoto model provides a valuable framework for understanding synchronization in complex systems, offering insights into collective behavior dynamics across different disciplines.</p>
     <h2>Kuramoto Oscillator Equation</h2>
     <div>
-        {% for eqs in eqs %}
-        <h3>{{eqs["order"]}}</h3>
-        <div>
-            \[{{eqs["eq"]}}\]
+        <h3><b>{{ eqs[0]["order"] }}</b></h3>
+        <div style="padding-top:25px">
+            \[{{ eqs[0]["eq"] }}\]
         </div>
-        {% endfor %}
+        <p style="text-align:left;padding-top:30px">
+            \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
+            \( \theta_j \) : Phase of j<sup>th</sup> Oscillator<br>
+            \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
+            \( K \) : Coupling Constant<br>
+            \( N \) : Number of Oscillators<br>
+        </p>
+        <h3 style="padding-top:6px"><b>{{ eqs[1]["order"] }}</b></h3>
+        <div style="padding-top:25px">
+            \[{{ eqs[1]["eq"] }}\]
+        </div>
+        <p style="text-align:left;padding-top:30px">
+            \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
+            \( \theta_j \) : Phase of j<sup>th</sup> Oscillator<br>
+            \( \theta_k \) : Phase of k<sup>th</sup> Oscillator<br>
+            \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
+            \( K_1 \) : Coupling strength for Pairwise Interactions<br>
+            \( K_2 \) : Coupling strength for Higher-order Interactions<br>
+            \( N \) : Number of Oscillators<br>
+        </p>
     </div>
-    
-    <button class="contact-button" style="text-align: center;">Contact Us</button>
 
+    <button class="contact-button" style="text-align: center;">Contact Us</button>
 </div>
 
 </body>
