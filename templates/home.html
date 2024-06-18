@@ -1,64 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuramoto Model</title>
-<style>
-  body {
-    font-family: 'Arial Unicode MS', sans-serif;
-    background-color: white;
-    color: black;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
+    <meta charset="UTF8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuramoto Model</title>
 
-  h1, p {
-    text-align: center;
-  }
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;700;900&display=swap">
 
-  h1 {
-    font-size: 54.65px;
-    margin-bottom: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: normal;
-  }
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text color */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
 
-  p {
-    font-size: 20px;
-    margin-top: 5px;
-  }
-  #container {
-    max-width: 720px;
-    margin: 0 auto 0 auto;
-  }
-</style>
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 20px 0;
+            color: #f0f0f0; /* Light gray text for headings */
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 900; /* Bolder font weight for main heading */
+            text-align: center;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7); /* White text shadow for glow effect */
+        }
+
+        h2 {
+            font-size: 2em;
+            font-weight: 700; /* Bold weight for subheadings */
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #ccc; /* Lighter gray for paragraph text */
+            margin-bottom: 20px;
+        }
+
+        #header {
+            width: 100%;
+            height: 300px;
+            background: url('/mnt/data/IMG-20240616-WA0013.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #header h1 {
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        #container {
+            max-width: 800px;
+            margin: -100px auto 0 auto;
+            padding: 20px;
+            background: #111; /* Dark gray background */
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro {
+            font-weight: 900;
+            font-size: 1.3em;
+            margin-top: 40px;
+        }
+
+        .content {
+            text-align: justify;
+            margin-top: 20px;
+        }
+
+        .highlight {
+            color: #e74c3c; /* Bright color for important text */
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<h1>𝖪𝖴𝖱𝖠𝖬𝖮𝖳𝖮 𝖬𝖮𝖣𝖤𝖫</h1>
-<p style="font-weight:bold">𝖴𝖭𝖨𝖳𝖨𝖭𝖦 𝖳𝖧𝖮𝖴𝖦𝖧𝖳𝖲, 𝖲𝖸𝖭𝖢𝖧𝖱𝖮𝖭𝖨𝖹𝖨𝖭𝖦 𝖱𝖤𝖠𝖫𝖨𝖳𝖨𝖤𝖲</p>
 
-  
-<div id = "container">
-  <p style="text-align: left;padding-block-start:40px;font-weight:bolder">𝖨𝗇𝗍𝗋𝗈𝖽𝗎𝖼𝗍𝗂𝗈𝗇:</p>
-<p style="text-align: left; padding-block-start: 5px;">𝖳𝗁𝖾 𝖪𝗎𝗋𝖺𝗆𝗈𝗍𝗈 𝗆𝗈𝖽𝖾𝗅, 𝗂𝗇𝗍𝗋𝗈𝖽𝗎𝖼𝖾𝖽 𝖻𝗒 𝖸𝗈𝗌𝗁𝗂𝗄𝗂 𝖪𝗎𝗋𝖺𝗆𝗈𝗍𝗈 𝗂𝗇 1975, 𝗂𝗌 𝖺 𝗆𝖺𝗍𝗁𝖾𝗆𝖺𝗍𝗂𝖼𝖺𝗅 𝖼𝗈𝗇𝖼𝖾𝗉𝗍 𝗎𝗌𝖾𝖽 𝗍𝗈 𝖾𝗑𝗉𝗅𝖺𝗂𝗇 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖺𝗍𝗂𝗈𝗇 𝗂𝗇 𝗌𝗒𝗌𝗍𝖾𝗆𝗌 𝗈𝖿 𝖼𝗈𝗇𝗇𝖾𝖼𝗍𝖾𝖽 𝗈𝗌𝖼𝗂𝗅𝗅𝖺𝗍𝗈𝗋𝗌. 𝖨𝗍 𝗂𝗌 𝗐𝗂𝖽𝖾𝗅𝗒 𝗌𝗍𝗎𝖽𝗂𝖾𝖽 𝗂𝗇 𝗉𝗁𝗒𝗌𝗂𝖼𝗌, 𝖻𝗂𝗈𝗅𝗈𝗀𝗒, 𝖺𝗇𝖽 𝖾𝗇𝗀𝗂𝗇𝖾𝖾𝗋𝗂𝗇𝗀, 𝗈𝖿𝖿𝖾𝗋𝗂𝗇𝗀 𝗂𝗇𝗌𝗂𝗀𝗁𝗍𝗌 𝗂𝗇𝗍𝗈 𝗁𝗈𝗐 𝗀𝗋𝗈𝗎𝗉𝗌 𝗈𝖿 𝗈𝗌𝖼𝗂𝗅𝗅𝖺𝗍𝗈𝗋𝗌 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖾 𝗍𝗁𝖾𝗂𝗋 𝗋𝗁𝗒𝗍𝗁𝗆𝗌.</p>
+<div id="header">
+    <h1>KURAMOTO MODEL</h1>
+</div>
 
-<p style="text-align: left;">𝖠𝗍 𝗂𝗍𝗌 𝖼𝗈𝗋𝖾, 𝗍𝗁𝖾 𝖪𝗎𝗋𝖺𝗆𝗈𝗍𝗈 𝗆𝗈𝖽𝖾𝗅 𝗌𝗁𝗈𝗐𝗌 𝗁𝗈𝗐 𝗂𝗇𝖽𝗂𝗏𝗂𝖽𝗎𝖺𝗅 𝗈𝗌𝖼𝗂𝗅𝗅𝖺𝗍𝗈𝗋𝗌, 𝖾𝖺𝖼𝗁 𝗐𝗂𝗍𝗁 𝗂𝗍𝗌 𝗈𝗐𝗇 𝗇𝖺𝗍𝗎𝗋𝖺𝗅 𝗋𝗁𝗒𝗍𝗁𝗆 𝗈𝗋 𝖿𝗋𝖾𝗊𝗎𝖾𝗇𝖼𝗒, 𝖼𝖺𝗇 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖾 𝗍𝗁𝖾𝗂𝗋 𝗉𝗁𝖺𝗌𝖾𝗌 𝗈𝗏𝖾𝗋 𝗍𝗂𝗆𝖾. 𝖳𝗁𝗂𝗌 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖺𝗍𝗂𝗈𝗇 𝗈𝖼𝖼𝗎𝗋𝗌 𝗍𝗁𝗋𝗈𝗎𝗀𝗁 𝗂𝗇𝗍𝖾𝗋𝖺𝖼𝗍𝗂𝗈𝗇𝗌 𝖻𝖾𝗍𝗐𝖾𝖾𝗇 𝗍𝗁𝖾 𝗈𝗌𝖼𝗂𝗅𝗅𝖺𝗍𝗈𝗋𝗌, 𝗐𝗁𝗂𝖼𝗁 𝖺𝗋𝖾 𝗂𝗇𝖿𝗅𝗎𝖾𝗇𝖼𝖾𝖽 𝖻𝗒 𝗍𝗁𝖾 𝗌𝗍𝗋𝖾𝗇𝗀𝗍𝗁 𝗈𝖿 𝗍𝗁𝖾𝗂𝗋 𝖼𝗈𝗇𝗇𝖾𝖼𝗍𝗂𝗈𝗇𝗌 𝗈𝗋 𝖼𝗈𝗎𝗉𝗅𝗂𝗇𝗀.</p>
+<div id="container">
+    <p class="intro">Introduction:</p>
+    <p class="content">The Kuramoto model, introduced by Yoshiki Kuramoto in 1975, is a mathematical concept used to explain synchronization in systems of connected oscillators. It is widely studied in physics, biology, and engineering, offering insights into how groups of oscillators synchronize their rhythms.</p>
+    <p class="content">At its core, the Kuramoto model shows how individual oscillators, each with its own natural rhythm or frequency, can synchronize their phases over time. This synchronization occurs through interactions between the oscillators, which are influenced by the strength of their connections or coupling.</p>
+    <p class="content">The model's simplicity lies in its ability to describe complex synchronization phenomena in a straightforward manner. By adjusting a few parameters, such as the coupling strength and the natural frequencies of the oscillators, researchers can simulate and understand various synchronization patterns seen in nature and technology.</p>
+    <p class="content">In physics, the Kuramoto model has been used to study synchronization in systems ranging from pendulum clocks to superconducting Josephson junctions. In biology, it helps explain synchronized behavior in neural networks, firefly flashing patterns, and cricket chirping. In engineering, the model is applied to design synchronized systems, such as power grids and communication networks, to improve their efficiency and stability.</p>
+    <p class="content">Overall, the Kuramoto model provides a valuable framework for understanding synchronization in complex systems, offering insights into collective behavior dynamics across different disciplines.</p>
+    <h2>Kuramoto Oscillator Equation:</h2>
+    <p class="content highlight">[Add the equation and its description here]</p>
+    <button class="contact-button" style="text-align: center;">Contact Us</button>
 
-<p style="text-align: left;">𝖳𝗁𝖾 𝗆𝗈𝖽𝖾𝗅'𝗌 𝗌𝗂𝗆𝗉𝗅𝗂𝖼𝗂𝗍𝗒 𝗅𝗂𝖾𝗌 𝗂𝗇 𝗂𝗍𝗌 𝖺𝖻𝗂𝗅𝗂𝗍𝗒 𝗍𝗈 𝖽𝖾𝗌𝖼𝗋𝗂𝖻𝖾 𝖼𝗈𝗆𝗉𝗅𝖾𝗑 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖺𝗍𝗂𝗈𝗇 𝗉𝗁𝖾𝗇𝗈𝗆𝖾𝗇𝖺 𝗂𝗇 𝖺 𝗌𝗍𝗋𝖺𝗂𝗀𝗁𝗍𝖿𝗈𝗋𝗐𝖺𝗋𝖽 𝗆𝖺𝗇𝗇𝖾𝗋. 𝖡𝗒 𝖺𝖽𝗃𝗎𝗌𝗍𝗂𝗇𝗀 𝖺 𝖿𝖾𝗐 𝗉𝖺𝗋𝖺𝗆𝖾𝗍𝖾𝗋𝗌, 𝗌𝗎𝖼𝗁 𝖺𝗌 𝗍𝗁𝖾 𝖼𝗈𝗎𝗉𝗅𝗂𝗇𝗀 𝗌𝗍𝗋𝖾𝗇𝗀𝗍𝗁 𝖺𝗇𝖽 𝗍𝗁𝖾 𝗇𝖺𝗍𝗎𝗋𝖺𝗅 𝖿𝗋𝖾𝗊𝗎𝖾𝗇𝖼𝗂𝖾𝗌 𝗈𝖿 𝗍𝗁𝖾 𝗈𝗌𝖼𝗂𝗅𝗅𝖺𝗍𝗈𝗋𝗌, 𝗋𝖾𝗌𝖾𝖺𝗋𝖼𝗁𝖾𝗋𝗌 𝖼𝖺𝗇 𝗌𝗂𝗆𝗎𝗅𝖺𝗍𝖾 𝖺𝗇𝖽 𝗎𝗇𝖽𝖾𝗋𝗌𝗍𝖺𝗇𝖽 𝗏𝖺𝗋𝗂𝗈𝗎𝗌 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖺𝗍𝗂𝗈𝗇 𝗉𝖺𝗍𝗍𝖾𝗋𝗇𝗌 𝗌𝖾𝖾𝗇 𝗂𝗇 𝗇𝖺𝗍𝗎𝗋𝖾 𝖺𝗇𝖽 𝗍𝖾𝖼𝗁𝗇𝗈𝗅𝗈𝗀𝗒.</p>
+</div>
 
-<p style="text-align: left;">𝖨𝗇 𝗉𝗁𝗒𝗌𝗂𝖼𝗌, 𝗍𝗁𝖾 𝖪𝗎𝗋𝖺𝗆𝗈𝗍𝗈 𝗆𝗈𝖽𝖾𝗅 𝗁𝖺𝗌 𝖻𝖾𝖾𝗇 𝗎𝗌𝖾𝖽 𝗍𝗈 𝗌𝗍𝗎𝖽𝗒 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖺𝗍𝗂𝗈𝗇 𝗂𝗇 𝗌𝗒𝗌𝗍𝖾𝗆𝗌 𝗋𝖺𝗇𝗀𝗂𝗇𝗀 𝖿𝗋𝗈𝗆 𝗉𝖾𝗇𝖽𝗎𝗅𝗎𝗆 𝖼𝗅𝗈𝖼𝗄𝗌 𝗍𝗈 𝗌𝗎𝗉𝖾𝗋𝖼𝗈𝗇𝖽𝗎𝖼𝗍𝗂𝗇𝗀 𝖩𝗈𝗌𝖾𝗉𝗁𝗌𝗈𝗇 𝗃𝗎𝗇𝖼𝗍𝗂𝗈𝗇𝗌. 𝖨𝗇 𝖻𝗂𝗈𝗅𝗈𝗀𝗒, 𝗂𝗍 𝗁𝖾𝗅𝗉𝗌 𝖾𝗑𝗉𝗅𝖺𝗂𝗇 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖾𝖽 𝖻𝖾𝗁𝖺𝗏𝗂𝗈𝗋 𝗂𝗇 𝗇𝖾𝗎𝗋𝖺𝗅 𝗇𝖾𝗍𝗐𝗈𝗋𝗄𝗌, 𝖿𝗂𝗋𝖾𝖿𝗅𝗒 𝖿𝗅𝖺𝗌𝗁𝗂𝗇𝗀 𝗉𝖺𝗍𝗍𝖾𝗋𝗇𝗌, 𝖺𝗇𝖽 𝖼𝗋𝗂𝖼𝗄𝖾𝗍 𝖼𝗁𝗂𝗋𝗉𝗂𝗇𝗀. 𝖨𝗇 𝖾𝗇𝗀𝗂𝗇𝖾𝖾𝗋𝗂𝗇𝗀, 𝗍𝗁𝖾 𝗆𝗈𝖽𝖾𝗅 𝗂𝗌 𝖺𝗉𝗉𝗅𝗂𝖾𝖽 𝗍𝗈 𝖽𝖾𝗌𝗂𝗀𝗇 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖾𝖽 𝗌𝗒𝗌𝗍𝖾𝗆𝗌, 𝗌𝗎𝖼𝗁 𝖺𝗌 𝗉𝗈𝗐𝖾𝗋 𝗀𝗋𝗂𝖽𝗌 𝖺𝗇𝖽 𝖼𝗈𝗆𝗆𝗎𝗇𝗂𝖼𝖺𝗍𝗂𝗈𝗇 𝗇𝖾𝗍𝗐𝗈𝗋𝗄𝗌, 𝗍𝗈 𝗂𝗆𝗉𝗋𝗈𝗏𝖾 𝗍𝗁𝖾𝗂𝗋 𝖾𝖿𝖿𝗂𝖼𝗂𝖾𝗇𝖼𝗒 𝖺𝗇𝖽 𝗌𝗍𝖺𝖻𝗂𝗅𝗂𝗍𝗒.</p>
-
-<p style="text-align: left;">𝖮𝗏𝖾𝗋𝖺𝗅𝗅, 𝗍𝗁𝖾 𝖪𝗎𝗋𝖺𝗆𝗈𝗍𝗈 𝗆𝗈𝖽𝖾𝗅 𝗉𝗋𝗈𝗏𝗂𝖽𝖾𝗌 𝖺 𝗏𝖺𝗅𝗎𝖺𝖻𝗅𝖾 𝖿𝗋𝖺𝗆𝖾𝗐𝗈𝗋𝗄 𝖿𝗈𝗋 𝗎𝗇𝖽𝖾𝗋𝗌𝗍𝖺𝗇𝖽𝗂𝗇𝗀 𝗌𝗒𝗇𝖼𝗁𝗋𝗈𝗇𝗂𝗓𝖺𝗍𝗂𝗈𝗇 𝗂𝗇 𝖼𝗈𝗆𝗉𝗅𝖾𝗑 𝗌𝗒𝗌𝗍𝖾𝗆𝗌, 𝗈𝖿𝖿𝖾𝗋𝗂𝗇𝗀 𝗂𝗇𝗌𝗂𝗀𝗁𝗍𝗌 𝗂𝗇𝗍𝗈 𝖼𝗈𝗅𝗅𝖾𝖼𝗍𝗂𝗏𝖾 𝖻𝖾𝗁𝖺𝗏𝗂𝗈𝗋 𝖽𝗒𝗇𝖺𝗆𝗂𝖼𝗌 𝖺𝖼𝗋𝗈𝗌𝗌 𝖽𝗂𝖿𝖿𝖾𝗋𝖾𝗇𝗍 𝖽𝗂𝗌𝖼𝗂𝗉𝗅𝗂𝗇𝖾𝗌.</p>
-<h2 style="padding-block-start:40px;font-weight:bolder">𝖪𝗎𝗋𝖺𝗆𝗈𝗍𝗈 𝖮𝗌𝖼𝗂𝗅𝗅𝖺𝗍𝗈𝗋 𝖤𝗊𝗎𝖺𝗍𝗂𝗈𝗇:</h2>
-
-<p>
-</p>
-  </div>
-
-  
 </body>
 </html>
