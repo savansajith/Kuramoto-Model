@@ -72,7 +72,6 @@
             z-index: 1;
         }
 
-
         .intro {
             font-weight: 900;
             font-size: 1.3em;
@@ -91,7 +90,6 @@
     </style>
 </head>
 <body>
-    
 
 <div id="header">
     <h1>KURAMOTO MODEL</h1>
@@ -99,37 +97,20 @@
 
 <div id="container">
     <h2 class="intro">Introduction</h2>
-    {% include "intro.html" %}
+    {% include 'intro.html' %}
     <h2>Kuramoto Oscillator Equation</h2>
     <div>
-        <h3><b>{{ eqs[0]["order"] }}</b></h3>
         <div style="padding-top:25px">
-            \[{{ eqs[0]["eq"] }}\]
+            \[{{ eq }}\]
         </div>
         <p style="text-align:left;padding-top:30px">
             \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
-            \( \theta_j \) : Phase of j<sup>th</sup> Oscillator<br>
-            \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
-            \( K \) : Coupling Constant<br>
-            \( N \) : Number of Oscillators<br>
-        </p>
-        <h3 style="padding-top:6px"><b>{{ eqs[1]["order"] }}</b></h3>
-        <div style="padding-top:25px">
-            \[{{ eqs[1]["eq"] }}\]
-        </div>
-        <p style="text-align:left;padding-top:30px">
-            \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
-            \( \theta_j \) : Phase of j<sup>th</sup> Oscillator<br>
-            \( \theta_k \) : Phase of k<sup>th</sup> Oscillator<br>
             \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
             \( K_1 \) : Coupling strength for Pairwise Interactions<br>
             \( K_2 \) : Coupling strength for Higher-order Interactions<br>
             \( N \) : Number of Oscillators<br>
         </p>
     </div>
-    
-
-    
 </div>
 
 </body>
