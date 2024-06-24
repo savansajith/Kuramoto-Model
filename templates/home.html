@@ -12,24 +12,35 @@
     <style>
         /* Your existing CSS styles here */
 
-        .plot-button {
-            background-color: #007bff; /* Blue background */
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
-            margin-top: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            transition: background-color 0.3s;
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+            color: #333; /* Dark text color */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
 
-        .plot-button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+        h1, h3 {
+            text-align: center;
+            margin-top: 20px;
         }
+
+        .equation {
+            font-size: 1.3em; /* Larger font size for the equation */
+            padding: 20px; /* Increased padding around the equation */
+            text-align: center; /* Center-align the equation */
+            border: 1px solid #ccc; /* Add a border for a more professional look */
+            border-radius: 10px; /* Rounded corners for the border */
+            background-color: #fff; /* White background for the equation */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow for depth */
+            margin-top: 30px; /* Space above the equation */
+            margin-bottom: 30px; /* Space below the equation */
+            margin-left: 300px; /* Add space on the left */
+            margin-right: 300px; /* Add space on the right */
+        }
+
+        /* Other styles... */
     </style>
 </head>
 <body>
@@ -39,21 +50,19 @@
 </div>
 
 <div id="container">
-    <h2 class="intro">Introduction</h2>
+    <h3 class="intro">Introduction</h3>
     {% include 'intro.html' %}
-    <h2>Kuramoto Oscillator Equation</h2>
-    <div>
-        <div style="padding-top:25px">
-            \[{{ eq }}\]
-        </div>
-        <p style="text-align:left;padding-top:30px">
-            \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
-            \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
-            \( K_1 \) : Coupling strength for Pairwise Interactions<br>
-            \( K_2 \) : Coupling strength for Higher-order Interactions<br>
-            \( N \) : Number of Oscillators<br>
-        </p>
+    <h3>Kuramoto Oscillator Equation</h3>
+    <div class="equation">
+        \[{{ eq }}\]
     </div>
+    <p>
+        \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
+        \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
+        \( K_1 \) : Coupling strength for Pairwise Interactions<br>
+        \( K_2 \) : Coupling strength for Higher-order Interactions<br>
+        \( N \) : Number of Oscillators<br>
+    </p>
     <button class="plot-button" onclick="plot()">Plot</button>
 </div>
 
