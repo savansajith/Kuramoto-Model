@@ -4,33 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuramoto Model</title>
-
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;700;900&display=swap">
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #f8f9fa;
             color: #333;
-            margin: 100px;
+            margin: 20px;
             padding: 10px;
             line-height: 1.6;
         }
-
         h1 {
             text-align: center;
             margin-top: 0px;
             font-size: 3.5em; 
         }
-
         h3 {
             text-align: left; 
             margin-top: 30px;
             font-size: 1.8em; 
         }
-
         .equation {
             font-size: 1.3em;
             padding: 20px;
@@ -44,11 +38,34 @@
             margin-left: 300px;
             margin-right: 300px;
         }
-
         .equation p {
             text-align: center;
         }
-
+        .form-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .form-container form {
+            display: inline-block;
+            text-align: left;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +88,19 @@
         \( K_2 \) : Coupling strength for Higher-order Interactions<br>
         \( N \) : Number of Oscillators<br>
     </p>
-    <h3>Plot</h3>
+    <div class="form-container">
+        <form action="/plot" method="post">
+            <label for="k1_start">K1 Start:</label>
+            <input type="number" step="any" id="k1_start" name="k1_start" required>
+            <label for="k1_end">K1 End:</label>
+            <input type="number" step="any" id="k1_end" name="k1_end" required>
+            <label for="k2">K2:</label>
+            <input type="number" step="any" id="k2" name="k2" required>
+            <label for="n">N:</label>
+            <input type="number" id="n" name="n" required>
+            <button type="submit">Plot</button>
+        </form>
+    </div>
 </div>
 
 </body>
