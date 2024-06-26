@@ -143,9 +143,9 @@ def plot_k1_vs_r1(results):
     ax.plot(k1_values_forward, r1_values_forward, 'o-', label='Forward Simulation', markersize=4)
     ax.plot(k1_values_backward, r1_values_backward, 'o-', label='Backward Simulation', markersize=4)
 
-    ax.set_xlabel('K₁')
-    ax.set_ylabel('r₁')
-    ax.set_title('K₁ vs r₁')
+    ax.set_xlabel(r'$K_1$')
+    ax.set_ylabel(r'$r_1$')
+    ax.set_title(r'$K_1$ vs $r_1$')
     ax.legend()
     plt.grid()
 
