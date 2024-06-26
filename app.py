@@ -21,10 +21,10 @@ def plot():
     k1_end = float(request.form['k1_end'])
     k2 = float(request.form['k2'])
     n = int(request.form['n'])
+    niter = int(request.form['niter'])
 
     # Fixed values
     tran = 20000
-    niter = 30000
     h = 0.01
     dk = 0.1
 
