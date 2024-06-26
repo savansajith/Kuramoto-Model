@@ -143,10 +143,11 @@ def plot_k1_vs_r1(results):
     ax.plot(k1_values_forward, r1_values_forward, 'o-', label='Forward Simulation', markersize=4)
     ax.plot(k1_values_backward, r1_values_backward, 'o-', label='Backward Simulation', markersize=4)
 
-    ax.set_xlabel('K1')
-    ax.set_ylabel('r1')
-    ax.set_title('K1 vs r1')
+    ax.set_xlabel('K₁')
+    ax.set_ylabel('r₁')
+    ax.set_title('K₁ vs r₁')
     ax.legend()
+    plt.grid()
 
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
