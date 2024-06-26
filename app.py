@@ -26,7 +26,7 @@ def plot():
     tran = 20000
     niter = 30000
     h = 0.01
-    dk = 0.2
+    dk = 0.1
 
     simulator = OscillatorsSimulator(k1_start, k1_end, k2, n, tran, niter, h, dk)
     results = simulator.simulate()
@@ -67,7 +67,8 @@ class OscillatorsSimulator:
         k1_values = []
         r1_values = []
 
-        with ProcessPoolExecutor() as executor:
+        # Limiting the number of concurrent processes to 2
+        with ProcessPoolExecutor(max_workers=2) as executor:
             futures = []
             for K1 in np.arange(k1_start, k1_end + np.sign(dk) * 0.01, dk):
                 futures.append(executor.submit(run_simulation_step, theta.copy(), omega, K1, k2, n, tran, niter, h))
@@ -78,6 +79,7 @@ class OscillatorsSimulator:
                 r1_values.append(r1)
 
         return k1_values, r1_values
+
 
 @nb.njit
 def run_simulation_step(theta, omega, K1, K2, n, tran, niter, h):
