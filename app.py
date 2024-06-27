@@ -25,7 +25,7 @@ def plot():
         niter = int(request.form['niter'])
 
         # Fixed values
-        tran = 20000
+        tran = niter * (2/3)
         h = 0.01
         dk = 0.1
 
