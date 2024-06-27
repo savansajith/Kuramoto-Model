@@ -17,22 +17,27 @@ def home():
 
 @app.route('/plot', methods=['POST'])
 def plot():
-    k1_start = float(request.form['k1_start'])
-    k1_end = float(request.form['k1_end'])
-    k2 = float(request.form['k2'])
-    n = int(request.form['n'])
-    niter = int(request.form['niter'])
+    try:
+        k1_start = float(request.form['k1_start'])
+        k1_end = float(request.form['k1_end'])
+        k2 = float(request.form['k2'])
+        n = int(request.form['n'])
+        niter = int(request.form['niter'])
 
-    # Fixed values
-    tran = 20000
-    h = 0.01
-    dk = 0.1
+        # Fixed values
+        tran = 20000
+        h = 0.01
+        dk = 0.1
 
-    simulator = OscillatorsSimulator(k1_start, k1_end, k2, n, tran, niter, h, dk)
-    results = simulator.simulate()
-    plot_url = plot_k1_vs_r1(results)
+        simulator = OscillatorsSimulator(k1_start, k1_end, k2, n, tran, niter, h, dk)
+        results = simulator.simulate()
+        plot_url = plot_k1_vs_r1(results)
 
-    return f'<img src="data:image/png;base64,{plot_url}" />'
+        return f'<img src="data:image/png;base64,{plot_url}" />'
+    except ValueError as ve:
+        return f"Invalid input: {ve}"
+    except Exception as e:
+        return f"An error occurred: {e}"
 
 class OscillatorsSimulator:
     def __init__(self, k1_start, k1_end, k2, n, tran, niter, h, dk):
@@ -51,10 +56,10 @@ class OscillatorsSimulator:
         omega = np.tan((np.arange(self.n) * pi) / self.n - ((self.n + 1) * pi) / (2 * self.n))
 
         theta = -1.0 * pi + 2.0 * pi * random_state.rand(self.n)
-        forward_results = self.run_simulation(theta, omega, self.k1_start, self.k1_end, self.dk, self.n, self.tran, self.niter, self.h, self.k2, "forward")
+        forward_results = self.run_simulation(theta, omega, self.k1_start, self.k1_end, self.dk, self.n, self.tran, self.niter, self.h, self.k2)
 
         theta = 2 * pi * np.ones(self.n)
-        backward_results = self.run_simulation(theta, omega, self.k1_end, self.k1_start, -self.dk, self.n, self.tran, self.niter, self.h, self.k2, "backward")
+        backward_results = self.run_simulation(theta, omega, self.k1_end, self.k1_start, -self.dk, self.n, self.tran, self.niter, self.h, self.k2)
 
         return {
             'k1_values_forward': forward_results[0],
@@ -63,11 +68,10 @@ class OscillatorsSimulator:
             'r1_values_backward': backward_results[1],
         }
 
-    def run_simulation(self, theta, omega, k1_start, k1_end, dk, n, tran, niter, h, k2, direction):
+    def run_simulation(self, theta, omega, k1_start, k1_end, dk, n, tran, niter, h, k2):
         k1_values = []
         r1_values = []
 
-        # Limiting the number of concurrent processes to 2
         with ProcessPoolExecutor(max_workers=2) as executor:
             futures = []
             for K1 in np.arange(k1_start, k1_end + np.sign(dk) * 0.01, dk):
@@ -79,7 +83,6 @@ class OscillatorsSimulator:
                 r1_values.append(r1)
 
         return k1_values, r1_values
-
 
 @nb.njit
 def run_simulation_step(theta, omega, K1, K2, n, tran, niter, h):
