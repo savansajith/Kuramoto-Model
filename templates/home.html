@@ -94,7 +94,7 @@
             }
 
             if (niter <= tran) {
-                alert(`The number of iterations must be greater than the transient duration. Please re-check your values`);
+                alert(`The number of iterations must be greater than the transient duration. Please check your entered values`);
                 return false;
             }
 
@@ -160,7 +160,7 @@
 
     <div class="plot-container" id="plot">
         {% if plot_url %}
-            <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 vs K1" style="border: 3px solid #000;">
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1" style="border: 3px solid #000;">
         {% endif %}
     </div>
 </div>

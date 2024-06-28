@@ -116,7 +116,7 @@ def plot_k1_vs_r1(results):
 
     ax.set_xlabel(r'$K_1$')
     ax.set_ylabel(r'$r_1$')
-    ax.set_title(r'$K_1$ vs $r_1$')
+    ax.set_title(r'$r_1$ v/s $K_1$')
     ax.legend()
     plt.grid()
 
