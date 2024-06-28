@@ -5,9 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Replace with your actual LaTeX equation
-    latex_eq = r"\frac{d\theta_i}{dt} = \omega_i + \frac{K_1}{N} \sum_{j=1}^{N} \sin\left(\theta_j - \theta_i\right) + \frac{K_2}{N^2} \sum_{j=1}^{N} \sum_{k=1}^{N} \sin\left(2\theta_j - \theta_k - \theta_i\right)"
-
+    # Replace latex_eq with your actual equation setup
+    latex_eq = 'your_latex_equation_here'
     return render_template("home.html", eq=latex_eq)
 
 @app.route('/plot', methods=['POST'])

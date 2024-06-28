@@ -85,7 +85,7 @@
             }
 
             if (niter <= tran) {
-                alert(`The number of iterations must be greater than the transient duration (${tran}).`);
+                alert(`The number of iterations must be greater than the transient duration. Please re-check your values`);
                 return false;
             }
 
@@ -143,7 +143,7 @@
                 <label for="tran">Transient duration:</label>
                 <input type="number" id="tran" name="tran" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="niter">No. of Iterations:</label>
                 <input type="number" id="niter" name="niter" required>
