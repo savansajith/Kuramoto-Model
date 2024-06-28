@@ -74,6 +74,17 @@
             align-items: flex-start;
         }
     </style>
+    <script>
+        function validateForm() {
+            const tran = 20000;
+            const niter = parseInt(document.getElementById('niter').value, 10);
+            if (niter <= tran) {
+                alert(`The number of iterations (niter) must be greater than the transient duration (${tran}).`);
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
 
@@ -94,12 +105,12 @@
         \( K_1 \) : Coupling strength for Pairwise Interactions<br>
         \( K_2 \) : Coupling strength for Higher-order Interactions<br>
         \( N \) : Number of Oscillators<br>
-    
+
     <h3>Simulation</h3>
         <p>a) r<sub>1</sub> v/s K<sub>1</sub></p>
     </p>
     <div class="form-container">
-        <form action="/plot" method="post">
+        <form action="/plot" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="k1_start">K<sub>1</sub> start:</label>
                 <input type="number" step="any" id="k1_start" name="k1_start" required>

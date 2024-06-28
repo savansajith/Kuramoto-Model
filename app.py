@@ -25,7 +25,7 @@ def plot():
         niter = int(request.form['niter'])
 
         # Fixed values
-        tran = niter * (2/3)
+        tran = 20000
         h = 0.01
         dk = 0.1
 
@@ -34,10 +34,8 @@ def plot():
         plot_url = plot_k1_vs_r1(results)
 
         return f'<img src="data:image/png;base64,{plot_url}" />'
-    except ValueError as ve:
-        return f"Invalid input: {ve}"
     except Exception as e:
-        return f"An error occurred: {e}"
+        return f"An error occurred: {e}\nPlease recheck your entered values."
 
 class OscillatorsSimulator:
     def __init__(self, k1_start, k1_end, k2, n, tran, niter, h, dk):
