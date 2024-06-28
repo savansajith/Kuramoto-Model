@@ -73,6 +73,15 @@
             flex-direction: column;
             align-items: flex-start;
         }
+        .plot-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .plot-container img {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #000; /* Black border */
+        }
     </style>
     <script>
         function validateForm() {
@@ -92,10 +101,8 @@
             return true;
         }
     </script>
-
 </head>
 <body>
-
 <div id="header">
     <h1>KURAMOTO MODEL</h1>
 </div>
@@ -113,10 +120,10 @@
         \( K_1 \) : Coupling strength for Pairwise Interactions<br>
         \( K_2 \) : Coupling strength for Higher-order Interactions<br>
         \( N \) : Number of Oscillators<br>
+    </p>
 
     <h3>Simulation</h3>
-        <p>a) r<sub>1</sub> v/s K<sub>1</sub></p>
-    </p>
+    <p>a) r<sub>1</sub> v/s K<sub>1</sub></p>
     <div class="form-container">
         <form action="/plot" method="post" onsubmit="return validateForm()">
             <div class="form-group">
@@ -143,7 +150,6 @@
                 <label for="tran">Transient duration:</label>
                 <input type="number" id="tran" name="tran" required>
             </div>
-
             <div class="form-group">
                 <label for="niter">No. of Iterations:</label>
                 <input type="number" id="niter" name="niter" required>
@@ -152,7 +158,11 @@
         </form>
     </div>
 
+    <div class="plot-container" id="plot">
+        {% if plot_url %}
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 vs K1" style="border: 3px solid #000;">
+        {% endif %}
+    </div>
 </div>
-
 </body>
 </html>

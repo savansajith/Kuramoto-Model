@@ -5,9 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Replace with your actual LaTeX equation
     latex_eq = r"\frac{d\theta_i}{dt} = \omega_i + \frac{K_1}{N} \sum_{j=1}^{N} \sin\left(\theta_j - \theta_i\right) + \frac{K_2}{N^2} \sum_{j=1}^{N} \sum_{k=1}^{N} \sin\left(2\theta_j - \theta_k - \theta_i\right)"
-
     return render_template("home.html", eq=latex_eq)
 
 @app.route('/plot', methods=['POST'])
@@ -21,14 +19,13 @@ def plot():
         niter = int(request.form['niter'])
         dk = float(request.form['dk'])
 
-        # Fixed value
         h = 0.01
-
         simulator = OscillatorsSimulator(k1_start, k1_end, k2, n, tran, niter, h, dk)
         results = simulator.simulate()
         plot_url = plot_k1_vs_r1(results)
 
-        return f'<img src="data:image/png;base64,{plot_url}" />'
+        latex_eq = r"\frac{d\theta_i}{dt} = \omega_i + \frac{K_1}{N} \sum_{j=1}^{N} \sin\left(\theta_j - \theta_i\right) + \frac{K_2}{N^2} \sum_{j=1}^{N} \sum_{k=1}^{N} \sin\left(2\theta_j - \theta_k - \theta_i\right)"
+        return render_template("home.html", eq=latex_eq, plot_url=plot_url)
     except Exception as e:
         return f"An error occurred: {e}\nPlease recheck your entered values."
 
