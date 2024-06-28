@@ -22,12 +22,13 @@ def plot():
         k1_end = float(request.form['k1_end'])
         k2 = float(request.form['k2'])
         n = int(request.form['n'])
+        tran = int(request.form['tran'])
         niter = int(request.form['niter'])
+        dk = float(request.form['dk'])
 
-        # Fixed values
-        tran = 20000
+        # Fixed value
         h = 0.01
-        dk = 0.1
+
 
         simulator = OscillatorsSimulator(k1_start, k1_end, k2, n, tran, niter, h, dk)
         results = simulator.simulate()
