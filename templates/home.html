@@ -80,7 +80,7 @@
         .plot-container img {
             max-width: 100%;
             height: auto;
-            border: 3px solid #000; /* Black border */
+            border: 3px solid #000;
         }
     </style>
     <script>
@@ -94,7 +94,7 @@
             }
 
             if (niter <= tran) {
-                alert(`The number of iterations must be greater than the transient duration. Please check your entered values`);
+                alert('The number of iterations must be greater than the transient duration. Please check your entered values.');
                 return false;
             }
 
@@ -160,7 +160,33 @@
 
     <div class="plot-container" id="plot">
         {% if plot_url %}
-            <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1" style="border: 3px solid #000;">
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
+        {% endif %}
+    </div>
+
+    <p>b) &theta; v/s t</p>
+
+    <div class="form-container">
+        <form action="/second_simulation" method="post">
+            <div class="form-group">
+                <label for="n2">N:</label>
+                <input type="number" id="n2" name="n2" required>
+            </div>
+            <div class="form-group">
+                <label for="k1_2">K<sub>1</sub>:</label>
+                <input type="number" step="any" id="k1_2" name="k1_2" required>
+            </div>
+            <div class="form-group">
+                <label for="k2_2">K<sub>2</sub>:</label>
+                <input type="number" step="any" id="k2_2" name="k2_2" required>
+            </div>
+            <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
+        </form>
+    </div>
+
+    <div class="plot-container" id="second_plot">
+        {% if second_plot_url %}
+            <img src="data:image/png;base64,{{ second_plot_url }}" alt="Second Simulation Plot">
         {% endif %}
     </div>
 </div>
