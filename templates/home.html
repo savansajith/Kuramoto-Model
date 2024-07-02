@@ -103,92 +103,92 @@
     </script>
 </head>
 <body>
-<div id="header">
-    <h1>KURAMOTO MODEL</h1>
-</div>
-
-<div id="container">
-    <h3 class="intro">Introduction</h3>
-    {% include 'intro.html' %}
-    <h3>Kuramoto Oscillator Equation</h3>
-    <div class="equation">
-        \[{{ eq }}\]
-    </div>
-    <p>
-        \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
-        \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
-        \( K_1 \) : Coupling strength for Pairwise Interactions<br>
-        \( K_2 \) : Coupling strength for Higher-order Interactions<br>
-        \( N \) : Number of Oscillators<br>
-    </p>
-
-    <h3>Simulation</h3>
-    <p>a) r<sub>1</sub> v/s K<sub>1</sub></p>
-    <div class="form-container">
-        <form action="/plot" method="post" onsubmit="return validateForm()">
-            <div class="form-group">
-                <label for="k1_start">K<sub>1</sub> start:</label>
-                <input type="number" step="any" id="k1_start" name="k1_start" required>
-            </div>
-            <div class="form-group">
-                <label for="k1_end">K<sub>1</sub> end:</label>
-                <input type="number" step="any" id="k1_end" name="k1_end" required>
-            </div>
-            <div class="form-group">
-                <label for="k2">K<sub>2</sub>:</label>
-                <input type="number" step="any" id="k2" name="k2" required>
-            </div>
-            <div class="form-group">
-                <label for="n">N:</label>
-                <input type="number" id="n" name="n" required>
-            </div>
-            <div class="form-group">
-                <label for="dk">dk:</label>
-                <input type="number" step="any" id="dk" name="dk" required>
-            </div>
-            <div class="form-group">
-                <label for="tran">Transient duration:</label>
-                <input type="number" id="tran" name="tran" required>
-            </div>
-            <div class="form-group">
-                <label for="niter">No. of Iterations:</label>
-                <input type="number" id="niter" name="niter" required>
-            </div>
-            <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
-        </form>
+    <div id="header">
+        <h1>KURAMOTO MODEL</h1>
     </div>
 
-    <div class="plot-container" id="plot">
-        {% if plot_url %}
-            <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
-        {% endif %}
-    </div>
+    <div id="container">
+        <h3 class="intro">Introduction</h3>
+        {% include 'intro.html' %}
+        <h3>Kuramoto Oscillator Equation</h3>
+        <div class="equation">
+            \[{{ eq }}\]
+        </div>
+        <p>
+            \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
+            \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
+            \( K_1 \) : Coupling strength for Pairwise Interactions<br>
+            \( K_2 \) : Coupling strength for Higher-order Interactions<br>
+            \( N \) : Number of Oscillators<br>
+        </p>
 
-    <p>b) &theta; v/s t</p>
+        <h3>Simulation</h3>
+        <p>a) r<sub>1</sub> v/s K<sub>1</sub></p>
+        <div class="form-container">
+            <form action="/plot" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="k1_start">K<sub>1</sub> start:</label>
+                    <input type="number" step="any" id="k1_start" name="k1_start" required>
+                </div>
+                <div class="form-group">
+                    <label for="k1_end">K<sub>1</sub> end:</label>
+                    <input type="number" step="any" id="k1_end" name="k1_end" required>
+                </div>
+                <div class="form-group">
+                    <label for="k2">K<sub>2</sub>:</label>
+                    <input type="number" step="any" id="k2" name="k2" required>
+                </div>
+                <div class="form-group">
+                    <label for="n">N:</label>
+                    <input type="number" id="n" name="n" required>
+                </div>
+                <div class="form-group">
+                    <label for="dk">dk:</label>
+                    <input type="number" step="any" id="dk" name="dk" required>
+                </div>
+                <div class="form-group">
+                    <label for="tran">Transient duration:</label>
+                    <input type="number" id="tran" name="tran" required>
+                </div>
+                <div class="form-group">
+                    <label for="niter">No. of Iterations:</label>
+                    <input type="number" id="niter" name="niter" required>
+                </div>
+                <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
+            </form>
+        </div>
 
-    <div class="form-container">
-        <form action="/second_simulation" method="post">
-            <div class="form-group">
-                <label for="n2">N:</label>
-                <input type="number" id="n2" name="n2" required>
-            </div>
-            <div class="form-group">
-                <label for="k1_2">K<sub>1</sub>:</label>
-                <input type="number" step="any" id="k1_2" name="k1_2" required>
-            </div>
-            <div class="form-group">
-                <label for="k2_2">K<sub>2</sub>:</label>
-                <input type="number" step="any" id="k2_2" name="k2_2" required>
-            </div>
-            <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
-        </form>
-    </div>
+        <div class="plot-container" id="plot">
+            {% if plot_url %}
+                <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
+            {% endif %}
+        </div>
 
-    <div class="plot-container" id="second_plot">
-        {% if second_plot_url %}
-            <img src="data:image/png;base64,{{ second_plot_url }}" alt="Second Simulation Plot">
-        {% endif %}
+        <p>b) &theta; v/s t</p>
+
+        <div class="form-container">
+            <form action="/second_simulation" method="post">
+                <div class="form-group">
+                    <label for="n2">N:</label>
+                    <input type="number" id="n2" name="n2" required>
+                </div>
+                <div class="form-group">
+                    <label for="k1_2">K<sub>1</sub>:</label>
+                    <input type="number" step="any" id="k1_2" name="k1_2" required>
+                </div>
+                <div class="form-group">
+                    <label for="k2_2">K<sub>2</sub>:</label>
+                    <input type="number" step="any" id="k2_2" name="k2_2" required>
+                </div>
+                <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
+            </form>
+        </div>
+
+        <div class="plot-container" id="second_plot">
+            {% if second_plot_url %}
+                <img src="data:image/png;base64,{{ second_plot_url }}" alt="Second Simulation Plot">
+            {% endif %}
+        </div>
     </div>
-</div>
 </body>
 </html>
