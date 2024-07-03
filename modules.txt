@@ -2,3 +2,4 @@ Flask
 numpy
 matplotlib
 numba
+vpython

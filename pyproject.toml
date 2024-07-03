@@ -17,6 +17,9 @@ scipy = "^1.13.1"
 memory-profiler = "^0.61.0"
 tqdm = "^4.66.4"
 quart = "^0.19.6"
+vpython = "^7.6.5"
+pythreejs = "^2.4.2"
+imageio = "^2.34.2"
 
 
 [build-system]

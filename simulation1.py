@@ -1,6 +1,3 @@
-# r1 vs k1 code
-
-# Import necessary libraries
 import numpy as np
 import matplotlib.pyplot as plt
 import io
@@ -11,7 +8,19 @@ import numba as nb
 # Define OscillatorsSimulator class for simulation
 class OscillatorsSimulator:
     def __init__(self, k1_start, k1_end, k2, n, tran, niter, h, dk):
-        # Initialize simulation parameters
+        """
+        Initialize the OscillatorsSimulator object with simulation parameters.
+
+        Parameters:
+        k1_start (float): Starting value of K1.
+        k1_end (float): Ending value of K1.
+        k2 (float): Coupling strength K2.
+        n (int): Number of oscillators.
+        tran (int): Transient duration.
+        niter (int): Number of iterations for simulation.
+        h (float): Time step.
+        dk (float): Step size for K1.
+        """
         self.k1_start = k1_start
         self.k1_end = k1_end
         self.k2 = k2
@@ -21,9 +30,14 @@ class OscillatorsSimulator:
         self.h = h
         self.dk = dk
 
-    # Method to perform simulations and return results
     def simulate(self):
-        # Set up initial conditions and random state
+        """
+        Perform simulations and return results.
+
+        Returns:
+        dict: Simulation results including k1 and r1 values for forward and backward simulations.
+        """
+        # Initialize random state and initial conditions
         pi = np.arctan(1.0) * 4
         random_state = np.random.RandomState(1234568)
         omega = np.tan((np.arange(self.n) * pi) / self.n - ((self.n + 1) * pi) / (2 * self.n))
@@ -42,8 +56,25 @@ class OscillatorsSimulator:
             'r1_values_backward': backward_results[1],
         }
 
-    # Method to run the simulation process
     def run_simulation(self, theta, omega, k1_start, k1_end, dk, n, tran, niter, h, k2):
+        """
+        Run the simulation process for a range of K1 values.
+
+        Parameters:
+        theta (numpy array): Initial phases of oscillators.
+        omega (numpy array): Natural frequencies of oscillators.
+        k1_start (float): Starting value of K1.
+        k1_end (float): Ending value of K1.
+        dk (float): Step size for K1.
+        n (int): Number of oscillators.
+        tran (int): Transient duration.
+        niter (int): Number of iterations for simulation.
+        h (float): Time step.
+        k2 (float): Coupling strength K2.
+
+        Returns:
+        tuple: Arrays of K1 values and corresponding r1 values.
+        """
         k1_values = []
         r1_values = []
 
@@ -63,6 +94,22 @@ class OscillatorsSimulator:
 # Decorated function for numerical simulation step using numba
 @nb.njit
 def run_simulation_step(theta, omega, K1, K2, n, tran, niter, h):
+    """
+    Perform a single simulation step using the given parameters.
+
+    Parameters:
+    theta (numpy array): Initial phases of oscillators.
+    omega (numpy array): Natural frequencies of oscillators.
+    K1 (float): Coupling strength K1.
+    K2 (float): Coupling strength K2.
+    n (int): Number of oscillators.
+    tran (int): Transient duration.
+    niter (int): Number of iterations for simulation.
+    h (float): Time step.
+
+    Returns:
+    tuple: K1 value and corresponding r1 value after simulation.
+    """
     pi = np.arctan(1.0) * 4
     r1 = 0.0
     for it in range(1, niter + 1):
@@ -86,6 +133,26 @@ def run_simulation_step(theta, omega, K1, K2, n, tran, niter, h):
 # Decorated function for derivative calculations using numba
 @nb.njit
 def derivs(t, dth, theta, omega, K1, K2, rs1, rs2, rc1, rc2, ra, n):
+    """
+    Calculate derivatives of phases using the given parameters.
+
+    Parameters:
+    t (float): Time.
+    dth (numpy array): Derivatives of phases.
+    theta (numpy array): Phases of oscillators.
+    omega (numpy array): Natural frequencies of oscillators.
+    K1 (float): Coupling strength K1.
+    K2 (float): Coupling strength K2.
+    rs1 (float): Sum of sine components of phases.
+    rs2 (float): Sum of sine components of 2*phases.
+    rc1 (float): Sum of cosine components of phases.
+    rc2 (float): Sum of cosine components of 2*phases.
+    ra (float): Average amplitude of oscillators.
+    n (int): Number of oscillators.
+
+    Returns:
+    None
+    """
     for i in range(n):
         # Calculate derivatives
         dth[i] = omega[i] + (K1 / n) * (np.cos(theta[i]) * rs1 - np.sin(theta[i]) * rc1) + \
@@ -95,6 +162,28 @@ def derivs(t, dth, theta, omega, K1, K2, rs1, rs2, rc1, rc2, ra, n):
 # Decorated function for Runge-Kutta method using numba
 @nb.njit
 def rk4(y, dydx, n, x, h, yout, omega, K1, K2, ra, rs1, rs2, rc1, rc2):
+    """
+    Perform fourth-order Runge-Kutta integration to update phases.
+
+    Parameters:
+    y (numpy array): Initial phases of oscillators.
+    dydx (numpy array): Derivatives of phases.
+    n (int): Number of oscillators.
+    x (float): Time.
+    h (float): Time step.
+    yout (numpy array): Updated phases after integration.
+    omega (numpy array): Natural frequencies of oscillators.
+    K1 (float): Coupling strength K1.
+    K2 (float): Coupling strength K2.
+    ra (float): Average amplitude of oscillators.
+    rs1 (float): Sum of sine components of phases.
+    rs2 (float): Sum of sine components of 2*phases.
+    rc1 (float): Sum of cosine components of phases.
+    rc2 (float): Sum of cosine components of 2*phases.
+
+    Returns:
+    None
+    """
     dym = np.zeros_like(y)
     dyt = np.zeros_like(y)
     yt = np.zeros_like(y)
@@ -111,6 +200,15 @@ def rk4(y, dydx, n, x, h, yout, omega, K1, K2, ra, rs1, rs2, rc1, rc2):
 
 # Function to plot k1 vs r1 and return plot as base64 encoded URL
 def plot_k1_vs_r1(results):
+    """
+    Plot K1 vs R1 for forward and backward simulations.
+
+    Parameters:
+    results (dict): Dictionary containing k1 and r1 values for both forward and backward simulations.
+
+    Returns:
+    str: Base64 encoded URL of the plot.
+    """
     k1_values_forward = results['k1_values_forward']
     r1_values_forward = results['r1_values_forward']
     k1_values_backward = results['k1_values_backward']

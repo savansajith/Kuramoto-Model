@@ -180,13 +180,13 @@
                     <label for="k2_2">K<sub>2</sub>:</label>
                     <input type="number" step="any" id="k2_2" name="k2_2" required>
                 </div>
-                <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
+                <button type="submit" style="padding: 5px; font-size: 1em;">Animate</button>
             </form>
         </div>
 
         <div class="plot-container" id="second_plot">
             {% if second_plot_url %}
-                <img src="data:image/png;base64,{{ second_plot_url }}" alt="Second Simulation Plot">
+                <img src="data:image/gif;base64,{{ second_plot_url }}" alt="Second Simulation Animation">
             {% endif %}
         </div>
     </div>

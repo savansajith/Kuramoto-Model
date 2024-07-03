@@ -1,5 +1,6 @@
 {pkgs}: {
   deps = [
+    pkgs.libGL
     pkgs.xsimd
     pkgs.libxcrypt
     pkgs.glibcLocales
