@@ -80,7 +80,7 @@
         .plot-container img {
             max-width: 100%;
             height: auto;
-            border: 3px solid #000;
+            border: none; /* Remove border */
         }
     </style>
     <script>
@@ -156,12 +156,6 @@
                 </div>
                 <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
             </form>
-        </div>
-
-        <div class="plot-container" id="plot">
-            {% if plot_url %}
-                <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
-            {% endif %}
         </div>
 
         <p>b) &theta; v/s t</p>
