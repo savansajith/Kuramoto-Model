@@ -5,84 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuramoto Model</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="static/styles.css">
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            margin: 20px;
-            padding: 10px;
-            line-height: 1.6;
-        }
-        h1 {
-            text-align: center;
-            margin-top: 0px;
-            font-size: 3.5em; 
-        }
-        h3 {
-            text-align: left; 
-            margin-top: 30px;
-            font-size: 1.8em; 
-        }
-        .equation {
-            font-size: 1.3em;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: 30px;
-            margin-bottom: 30px;
-            margin-left: auto;
-            margin-right: auto;
-            width: 60%;
-        }
-        .equation p {
-            text-align: center;
-        }
-        .form-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .form-container form {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        .form-container label {
-            margin: 5px 0;
-        }
-        .form-container input {
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-        .form-container button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .plot-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .plot-container img {
-            max-width: 100%;
-            height: auto;
-            border: none; /* Remove border */
-        }
-    </style>
     <script>
         function validateForm() {
             const tran = parseInt(document.getElementById('tran').value, 10);
@@ -156,6 +80,12 @@
                 </div>
                 <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
             </form>
+        </div>
+
+        <div class="plot-container" id="plot">
+            {% if plot_url %}
+                <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
+            {% endif %}
         </div>
 
         <p>b) &theta; v/s t</p>

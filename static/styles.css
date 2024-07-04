@@ -1,0 +1,87 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 20px;
+  padding: 10px;
+  line-height: 1.6;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0px;
+  font-size: 3.5em; 
+}
+
+h3 {
+  text-align: left; 
+  margin-top: 30px;
+  font-size: 1.8em; 
+}
+
+.equation {
+  font-size: 1.3em;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.equation p {
+  text-align: center;
+}
+
+.form-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.form-container form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-container label {
+  margin: 5px 0;
+}
+
+.form-container input {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.form-container button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.plot-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.plot-container img {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid #000;
+}
