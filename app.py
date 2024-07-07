@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request
 from simulation1 import OscillatorsSimulator, plot_k1_vs_r1
-from simulation2 import simulate_and_animate
+from simulation2 import simulate_and_save_animation
 import io
 import base64
 import matplotlib.pyplot as plt
 import os
 import tempfile
-import concurrent.futures
 
 app = Flask(__name__)
 
@@ -43,9 +42,7 @@ def second_simulation():
         k1 = float(request.form['k1_2'])
         k2 = float(request.form['k2_2'])
 
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            future = executor.submit(simulate_and_save_animation, n, k1, k2)
-            gif_data = future.result()
+        gif_data = simulate_and_save_animation(n, k1, k2)
 
         second_plot_url = base64.b64encode(gif_data).decode('utf-8')
 
@@ -53,15 +50,6 @@ def second_simulation():
         return render_template("home.html", eq=latex_eq, second_plot_url=second_plot_url)
     except Exception as e:
         return f"An error occurred: {e}\nPlease recheck your entered values."
-
-def simulate_and_save_animation(n, k1, k2):
-    ani = simulate_and_animate(n, k1, k2)
-    with tempfile.NamedTemporaryFile(delete=False, suffix='.gif') as tmpfile:
-        ani.save(tmpfile.name, writer='imagemagick', fps=30)
-        tmpfile.seek(0)
-        gif_data = tmpfile.read()
-    os.remove(tmpfile.name)
-    return gif_data
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
