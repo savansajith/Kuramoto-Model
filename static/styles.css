@@ -95,9 +95,10 @@ h3 {
 }
 
 .plot-container1 img {
-  max-width: 100%;
+  max-width: 85%;
   height: auto;
   border: 1.5px solid #000;
+  border-radius: 10px;
 }
 
 .plot-container2 {
