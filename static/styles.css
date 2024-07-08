@@ -75,13 +75,27 @@ h3 {
   align-items: flex-start;
 }
 
-.plot-container {
+.plot-container1 {
   text-align: center;
   margin-top: 30px;
 }
 
-.plot-container img {
+.plot-container1 img {
   max-width: 100%;
   height: auto;
-  border: 3px solid #000;
+  border: 1.5px solid #000;
+}
+
+.plot-container2 {
+  text-align: left;
+  margin-top: 30px;
+  width: 50%;
+  margin-left: 55px;
+  margin-right: auto;
+}
+
+.plot-container2 img {
+  max-width: 100%;
+  height: auto;
+  border: 1.5px solid #000;
 }

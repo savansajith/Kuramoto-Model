@@ -109,7 +109,7 @@ def plot_k1_vs_r1(results):
     ax.plot(results['k1_values_forward'], results['r1_values_forward'], label='Forward')
     ax.plot(results['k1_values_backward'], results['r1_values_backward'], label='Backward')
     ax.set_xlabel('K1')
-    ax.set_ylabel('R1')
+    ax.set_ylabel('r1')
     ax.legend()
     ax.grid(True)
 
