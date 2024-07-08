@@ -10,7 +10,7 @@ body {
 h1 {
   text-align: center;
   margin-top: 0px;
-  font-size: 3.5em; 
+  font-size: 2.5em; 
 }
 
 h3 {
@@ -89,8 +89,8 @@ h3 {
 .plot-container2 {
   text-align: left;
   margin-top: 30px;
-  width: 50%;
-  margin-left: 55px;
+  width: 30%;
+  margin-left: 225px;
   margin-right: auto;
 }
 
@@ -99,3 +99,4 @@ h3 {
   height: auto;
   border: 1.5px solid #000;
 }
+

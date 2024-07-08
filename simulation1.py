@@ -1,3 +1,5 @@
+# r1 vs k1 code
+
 import numpy as np
 import matplotlib.pyplot as plt
 import io
@@ -20,9 +22,10 @@ class OscillatorsSimulator:
         pi = np.arctan(1.0) * 4
         random_state = np.random.RandomState(1234568)
         omega = np.tan((np.arange(self.n) * pi) / self.n - ((self.n + 1) * pi) / (2 * self.n))
-        theta = -1.0 * pi + 2.0 * pi * random_state.rand(self.n)
 
+        theta = -1.0 * pi + 2.0 * pi * random_state.rand(self.n)
         forward_results = self.run_simulation(theta, omega, self.k1_start, self.k1_end, self.dk, self.n, self.tran, self.niter, self.h, self.k2)
+
         theta = 2 * pi * np.ones(self.n)
         backward_results = self.run_simulation(theta, omega, self.k1_end, self.k1_start, -self.dk, self.n, self.tran, self.niter, self.h, self.k2)
 
@@ -53,69 +56,74 @@ class OscillatorsSimulator:
 def run_simulation_step(theta, omega, K1, K2, n, tran, niter, h):
     pi = np.arctan(1.0) * 4
     r1 = 0.0
+    r2 = 0.0
+    beta = 0.0
+    alpha = 0.0
     for it in range(1, niter + 1):
         rc1 = np.cos(theta).sum()
         rs1 = np.sin(theta).sum()
         rc2 = np.cos(2 * theta).sum()
         rs2 = np.sin(2 * theta).sum()
         ra = np.sqrt(rs1 ** 2 + rc1 ** 2) / n
+        rb = np.sqrt(rs2 ** 2 + rc2 ** 2) / n
         dth = np.zeros_like(theta)
-        derivs(0, dth, theta, omega, K1, K2, rs1, rs2, rc1, rc2, ra, n)
+        derivs(0, dth, theta, omega, K1, K2, rs1, rs2, rc1, rc2, ra, beta, alpha, n)
         tho = np.zeros_like(theta)
-        rk4(theta, dth, n, 0, h, tho, omega, K1, K2, ra, rs1, rs2, rc1, rc2)
+        rk4(theta, dth, n, 0, h, tho, omega, K1, K2, ra, rs1, rs2, rc1, rc2, beta, alpha)
         theta = np.mod(tho, 2 * pi)
         if it > tran:
             r1 += ra
+            r2 += rb
     r1 /= niter - tran
     return K1, r1
 
 @nb.njit
-def derivs(t, dth, theta, omega, K1, K2, rs1, rs2, rc1, rc2, ra, n):
+def derivs(t, dth, theta, omega, K1, K2, rs1, rs2, rc1, rc2, ra, beta, alpha, n):
+    x = 0
+    y = 0
     for i in range(n):
-        dth[i] = omega[i] + (K1 / n) * (np.cos(theta[i]) * rs1 - np.sin(theta[i]) * rc1) + (K2 / n ** 2) * (np.cos(2 * theta[i]) * rs2 - np.sin(2 * theta[i]) * rc2)
+        dth[i] = omega[i] + (ra ** x) * (K1 / n) * (np.cos(theta[i] + alpha) * rs1 - np.sin(theta[i] + alpha) * rc1) + \
+                 (K2 / n ** 2) * (ra ** y) * (np.cos(theta[i] + beta) * rs2 * rc1 - np.sin(theta[i] + beta) * rs2 * rs1 -
+                                              np.sin(theta[i] + beta) * rc2 * rc1 - np.cos(theta[i] + beta) * rc2 * rs1)
 
 @nb.njit
-def rk4(th, dth, n, t, h, tho, omega, K1, K2, ra, rs1, rs2, rc1, rc2):
-    th1, th2, th3 = th.copy(), th.copy(), th.copy()
-    k1 = dth.copy()
-    for i in range(n):
-        th1[i] = th[i] + k1[i] * h / 2.0
-    rc1 = np.cos(th1).sum()
-    rs1 = np.sin(th1).sum()
-    rc2 = np.cos(2 * th1).sum()
-    rs2 = np.sin(2 * th1).sum()
-    derivs(t + h / 2.0, k1, th1, omega, K1, K2, rs1, rs2, rc1, rc2, ra, n)
-    k2 = k1.copy()
-    for i in range(n):
-        th2[i] = th[i] + k2[i] * h / 2.0
-    rc1 = np.cos(th2).sum()
-    rs1 = np.sin(th2).sum()
-    rc2 = np.cos(2 * th2).sum()
-    rs2 = np.sin(2 * th2).sum()
-    derivs(t + h / 2.0, k2, th2, omega, K1, K2, rs1, rs2, rc1, rc2, ra, n)
-    k3 = k2.copy()
-    for i in range(n):
-        th3[i] = th[i] + k3[i] * h
-    rc1 = np.cos(th3).sum()
-    rs1 = np.sin(th3).sum()
-    rc2 = np.cos(2 * th3).sum()
-    rs2 = np.sin(2 * th3).sum()
-    derivs(t + h, k3, th3, omega, K1, K2, rs1, rs2, rc1, rc2, ra, n)
-    for i in range(n):
-        tho[i] = th[i] + h * (dth[i] + 2.0 * (k1[i] + k2[i]) + k3[i]) / 6.0
+def rk4(y, dydx, n, x, h, yout, omega, K1, K2, ra, rs1, rs2, rc1, rc2, beta, alpha):
+    dym = np.zeros_like(y)
+    dyt = np.zeros_like(y)
+    yt = np.zeros_like(y)
+    hh = h * 0.5
+    h6 = h / 6.0
+    xh = x + hh
+    yt = y + hh * dydx
+    derivs(xh, yt, dyt, omega, K1, K2, rs1, rs2, rc1, rc2, ra, beta, alpha, n)
+    yt = y + hh * dyt
+    derivs(xh, yt, dym, omega, K1, K2, rs1, rs2, rc1, rc2, ra, beta, alpha, n)
+    yt = y + h * dym
+    dym += dyt
+    derivs(x + h, yt, dyt, omega, K1, K2, rs1, rs2, rc1, rc2, ra, beta, alpha, n)
+    yout[:] = y + h6 * (dydx + dyt + 2.0 * dym)
 
 def plot_k1_vs_r1(results):
-    fig, ax = plt.subplots()
-    ax.plot(results['k1_values_forward'], results['r1_values_forward'], label='Forward')
-    ax.plot(results['k1_values_backward'], results['r1_values_backward'], label='Backward')
-    ax.set_xlabel('K1')
-    ax.set_ylabel('r1')
+    k1_values_forward = results['k1_values_forward']
+    r1_values_forward = results['r1_values_forward']
+    k1_values_backward = results['k1_values_backward']
+    r1_values_backward = results['r1_values_backward']
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    ax.plot(k1_values_forward, r1_values_forward, 'o-', label='Forward Simulation', markersize=4)
+    ax.plot(k1_values_backward, r1_values_backward, 'o-', label='Backward Simulation', markersize=4)
+
+    ax.set_xlabel(r'$K_1$')
+    ax.set_ylabel(r'$r_1$')
+    ax.set_title(r'$r_1$ v/s $K_1$')
     ax.legend()
-    ax.grid(True)
+    plt.grid()
 
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     buf.seek(0)
-    plot_url = base64.b64encode(buf.getvalue()).decode('utf-8')
-    plt.close(fig)
+    plot_url = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+
     return plot_url
