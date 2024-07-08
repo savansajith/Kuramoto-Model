@@ -50,6 +50,13 @@ h3 {
   gap: 10px;
 }
 
+.form-container .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 .form-container label {
   margin: 5px 0;
 }
@@ -125,6 +132,6 @@ h3 {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
 }
