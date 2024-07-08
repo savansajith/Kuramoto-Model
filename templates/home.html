@@ -7,24 +7,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;700;900&display=swap">
     <link rel="stylesheet" href="static/styles.css">
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    <script>
-        function validateForm() {
-            const tran = parseInt(document.getElementById('tran').value, 10);
-            const niter = parseInt(document.getElementById('niter').value, 10);
-
-            if (isNaN(tran) || isNaN(niter)) {
-                alert('Please enter valid numbers for Transient Duration and No. of Iterations.');
-                return false;
-            }
-
-            if (niter <= tran) {
-                alert('The number of iterations must be greater than the transient duration. Please check your entered values.');
-                return false;
-            }
-
-            return true;
-        }
-    </script>
 </head>
 <body>
     <div id="header">
@@ -49,7 +31,7 @@
         <h3>Simulation</h3>
         <p>a) \( r_1 \)  v/s  \( K_1 \)</p>
         <div class="form-container">
-            <form action="/plot" method="post" onsubmit="return validateForm()">
+            <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')">
                 <div class="form-group">
                     <label for="k1_start">\( K_1 \) start:</label>
                     <input type="number" step="any" id="k1_start" name="k1_start" required>
@@ -70,15 +52,10 @@
                     <label for="dk">\( dk \):</label>
                     <input type="number" step="any" id="dk" name="dk" required>
                 </div>
-                <div class="form-group">
-                    <label for="tran">Transient duration:</label>
-                    <input type="number" id="tran" name="tran" required>
+                <div class="button-container">
+                    <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
+                    <div class="loader" id="plot-loader"></div>
                 </div>
-                <div class="form-group">
-                    <label for="niter">No. of Iterations:</label>
-                    <input type="number" id="niter" name="niter" required>
-                </div>
-                <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
             </form>
         </div>
 
@@ -91,7 +68,7 @@
         <p>b) &theta; v/s \( t \)</p>
 
         <div class="form-container">
-            <form action="/second_simulation" method="post">
+            <form action="/second_simulation" method="post" onsubmit="return handleFormSubmit(event, 'animate-loader')">
                 <div class="form-group">
                     <label for="n2">\( N \):</label>
                     <input type="number" id="n2" name="n2" required>
@@ -104,7 +81,10 @@
                     <label for="k2_2">\( K_2 \):</label>
                     <input type="number" step="any" id="k2_2" name="k2_2" required>
                 </div>
-                <button type="submit" style="padding: 5px; font-size: 1em;">Animate</button>
+                <div class="button-container">
+                    <button type="submit" style="padding: 5px; font-size: 1em;">Animate</button>
+                    <div class="loader" id="animate-loader"></div>
+                </div>
             </form>
         </div>
 
@@ -114,5 +94,13 @@
             {% endif %}
         </div>
     </div>
+
+    <script>
+        function handleFormSubmit(event, loaderId) {
+            event.target.querySelector('button').disabled = true;
+            document.getElementById(loaderId).style.display = 'block';
+            return true;
+        }
+    </script>
 </body>
 </html>

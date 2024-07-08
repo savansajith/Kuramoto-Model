@@ -21,11 +21,11 @@ def plot():
         k1_end = float(request.form['k1_end'])
         k2 = float(request.form['k2'])
         n = int(request.form['n'])
-        tran = int(request.form['tran'])
-        niter = int(request.form['niter'])
         dk = float(request.form['dk'])
 
         h = 0.01
+        tran = 20000
+        niter = 30000
         simulator = OscillatorsSimulator(k1_start, k1_end, k2, n, tran, niter, h, dk)
         results = simulator.simulate()
         plot_url = plot_k1_vs_r1(results)

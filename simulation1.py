@@ -111,8 +111,8 @@ def plot_k1_vs_r1(results):
 
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    ax.plot(k1_values_forward, r1_values_forward, 'o-', label='Forward Simulation', markersize=4)
-    ax.plot(k1_values_backward, r1_values_backward, 'o-', label='Backward Simulation', markersize=4)
+    ax.plot(k1_values_forward, r1_values_forward, 'o--', label='Forward Simulation', markersize=4)
+    ax.plot(k1_values_backward, r1_values_backward, 'o--', label='Backward Simulation', markersize=4)
 
     ax.set_xlabel(r'$K_1$')
     ax.set_ylabel(r'$r_1$')

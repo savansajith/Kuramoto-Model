@@ -45,8 +45,8 @@ h3 {
 
 .form-container form {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
@@ -59,6 +59,14 @@ h3 {
   margin-bottom: 10px;
 }
 
+.form-container .button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
 .form-container button {
   padding: 10px 20px;
   font-size: 1em;
@@ -66,7 +74,6 @@ h3 {
   color: #fff;
   border: none;
   cursor: pointer;
-  margin: 10px 0;
 }
 
 .form-group {
@@ -100,3 +107,24 @@ h3 {
   border: 1.5px solid #000;
 }
 
+.loader {
+  display: none;
+  margin: 10px auto;
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #007bff;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
