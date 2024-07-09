@@ -35,11 +35,12 @@
 
     <!-- Main Content -->
     <div id="container" class="w3-container">
-        <h3 class="intro">Introduction</h3>
+        <h3 class="intro">Description</h3>
         {% include 'intro.html' %}
-        <h3>Kuramoto Oscillator Equation</h3>
+        <h3>Kuramoto Oscillator Equations</h3>
         <div class="equation">
-            \[{{ eq }}\]
+            \[{{ latex_eq1 }}\]
+            \[{{ latex_eq2 }}\]
         </div>
         <p>
             \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
@@ -47,6 +48,8 @@
             \( K_1 \) : Coupling strength for Pairwise Interactions<br>
             \( K_2 \) : Coupling strength for Higher-order Interactions<br>
             \( N \) : Number of Oscillators<br>
+            \( r_1 \) : Order Parameter<br>
+            \( \psi_1 \) : Mean Phase of Oscillators<br>
         </p>
 
         <h3>Simulation</h3>
