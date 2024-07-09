@@ -1,25 +1,43 @@
+/* Adjusted styles for better spacing */
+
+/* General body styling */
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
-  margin: 20px;
-  padding: 10px;
-  line-height: 1.6;
+  font-family: "Lato", sans-serif;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
-h1 {
-  text-align: center;
-  margin-top: 0px;
-  font-size: 2.5em; 
+/* Navbar adjustments */
+.w3-top {
+  position: fixed;
+  width: 100%;
+  z-index: 1000; /* Ensure navbar is on top */
 }
 
-h3 {
-  text-align: left; 
-  margin-top: 30px;
-  font-size: 1.8em; 
+.w3-bar {
+  overflow: hidden;
+  background-color: #333; /* Darker background color */
+  padding: 0; /* Remove padding */
 }
 
-.equation {
+.w3-bar .w3-bar-item {
+  padding: 16px; /* Padding for menu items */
+  float: left;
+}
+
+/* Page content adjustments */
+.w3-content {
+  margin-top: 60px; /* Adjust margin top to accommodate fixed navbar */
+  padding: 20px; /* Add padding inside content */
+}
+
+/* Sections adjustments */
+.w3-container {
+  margin-bottom: 40px; /* Space between sections */
+}
+
+/* Equations and text adjustments */
+.equation1, .equation2 {
   font-size: 1.3em;
   padding: 20px;
   text-align: center;
@@ -27,20 +45,22 @@ h3 {
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
+  margin: 20px auto; /* Reduce margin */
 }
 
-.equation p {
-  text-align: center;
+.equation1 {
+  width: 70%; /* Adjust width for better alignment */
 }
 
+.equation2 {
+  width: 50%; /* Adjust width for better alignment */
+}
+
+/* Form container adjustments */
 .form-container {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px; /* Reduce top margin */
+  margin-bottom: 40px; /* Space between form and next section */
 }
 
 .form-container form {
@@ -50,71 +70,26 @@ h3 {
   gap: 10px;
 }
 
-.form-container .form-row {
+.form-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
 }
 
-.form-container label {
-  margin: 5px 0;
+/* Plot container adjustments */
+.plot-container {
+  margin-bottom: 40px; /* Space between plots and next section */
 }
 
-.form-container input {
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
-.form-container .button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  gap: 10px;
-}
-
-.form-container button {
-  padding: 10px 20px;
-  font-size: 1em;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.plot-container1 {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.plot-container1 img {
-  max-width: 85%;
+.plot-container img {
+  max-width: 100%;
   height: auto;
   border: 1.5px solid #000;
   border-radius: 10px;
 }
 
-.plot-container2 {
-  text-align: left;
-  margin-top: 30px;
-  width: 30%;
-  margin-left: 225px;
-  margin-right: auto;
-}
-
-.plot-container2 img {
-  max-width: 100%;
-  height: auto;
-  border: 1.5px solid #000;
-}
-
+/* Loader adjustments */
 .loader {
   display: none;
   margin: 10px auto;
@@ -127,12 +102,13 @@ h3 {
   animation: spin 2s linear infinite;
 }
 
+/* Animation for loader */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
 
 @keyframes spin {
-   0% { transform: rotate(0deg); }
-   100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
