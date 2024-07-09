@@ -1,56 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Kuramoto Model</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuramoto Model</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="static/styles.css">
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    <style>
-        /* Optional: Add your custom CSS styles here */
-    </style>
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myNavbar");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
-    </script>
 </head>
 <body>
-
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-black w3-card">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-        <div id="myNavbar" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">ABOUT</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">SERVICES</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">CONTACT</a>
-        </div>
-    </div>
-</div>
-
-<!-- Page content -->
-<div class="w3-content">
-    <!-- Description Section -->
-    <div class="w3-container w3-center" id="description">
-        <h2 class="w3-wide">Description</h2>
-        {% include 'disc.html' %}
+    <div id="header">
+        <h1>SIMULATIONS OF KURAMOTO OSCILLATORS</h1>
     </div>
 
-    <!-- Equations Section -->
-    <div class="w3-container w3-center" id="equations">
-        <h2 class="w3-wide">Kuramoto Oscillator Equations</h2>
-        <div class="equation1">
-            \[{{ eq1 }}\]
+    <div id="container">
+        <h3 class="intro">Introduction</h3>
+        {% include 'intro.html' %}
+        <h3>Kuramoto Oscillator Equation</h3>
+        <div class="equation">
+            \[{{ eq }}\]
         </div>
         <p>
             \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
@@ -59,18 +27,8 @@
             \( K_2 \) : Coupling strength for Higher-order Interactions<br>
             \( N \) : Number of Oscillators<br>
         </p>
-        <div class="equation2">
-            \[{{ eq2 }}\]
-        </div>
-        <p>
-            \( \psi_1 \) : Mean Phase of Oscillators<br>
-            \( r_1 \) : Order Parameter of Oscillators<br>
-        </p>
-    </div>
 
-    <!-- Simulation Section -->
-    <div class="w3-container w3-center" id="simulation">
-        <h2 class="w3-wide">Simulation</h2>
+        <h3>Simulation</h3>
         <p>a) \( r_1 \)  v/s  \( K_1 \)</p>
         <div class="form-container">
             <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')">
@@ -97,19 +55,20 @@
                     </div>
                 </div>
                 <div class="button-container">
-                    <button type="submit" class="w3-button w3-black w3-padding-large">Plot</button>
+                    <button type="submit" style="padding: 5px; font-size: 1em;">Plot</button>
                     <div class="loader" id="plot-loader"></div>
                 </div>
             </form>
         </div>
 
-        <div class="plot-container" id="plot">
+        <div class="plot-container1" id="plot">
             {% if plot_url %}
                 <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
             {% endif %}
         </div>
 
         <p>b) &theta; v/s \( t \)</p>
+
         <div class="form-container">
             <form action="/second_simulation" method="post" onsubmit="return handleFormSubmit(event, 'animate-loader')">
                 <div class="form-row">
@@ -125,44 +84,27 @@
                         <label for="k2_2">\( K_2 \):</label>
                         <input type="number" step="any" id="k2_2" name="k2_2" value="{{ request.form.k2_2 }}" required>
                     </div>
-                    <div class="form-group">
-                        <label for="tran">tran:</label>
-                        <input type="number" step="any" id="tran" name="tran" value="{{ request.form.tran }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="dk2">dk:</label>
-                        <input type="number" step="any" id="dk2" name="dk2" value="{{ request.form.dk2 }}" required>
-                    </div>
                 </div>
                 <div class="button-container">
-                    <button type="submit" class="w3-button w3-black w3-padding-large">Animate</button>
+                    <button type="submit" style="padding: 5px; font-size: 1em;">Animate</button>
                     <div class="loader" id="animate-loader"></div>
                 </div>
             </form>
         </div>
 
-        <div class="plot-container" id="plot2">
-            <div class="animate-container">
-                {% if animate_url %}
-                    <img src="data:image/gif;base64,{{ animate_url }}" alt="Animation of theta v/s t">
-                {% endif %}
-            </div>
+        <div class="plot-container2" id="second_plot">
+            {% if second_plot_url %}
+                <img src="data:image/gif;base64,{{ second_plot_url }}" alt="Second Simulation Animation">
+            {% endif %}
         </div>
     </div>
 
-</div>
-
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-    <a href="#"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
-    <a href="#"><i class="fa fa-instagram w3-hover-opacity"></i></a>
-    <a href="#"><i class="fa fa-envelope w3-hover-opacity"></i></a>
-    <a href="#"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
-    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
-
-<!-- Scripts -->
-<script src="{{ url_for('static', filename='scripts.js') }}"></script>
-
+    <script>
+        function handleFormSubmit(event, loaderId) {
+            event.target.querySelector('button').disabled = true;
+            document.getElementById(loaderId).style.display = 'block';
+            return true;
+        }
+    </script>
 </body>
 </html>
