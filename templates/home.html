@@ -58,7 +58,10 @@
                     \( \psi_1 \) : Mean Phase of Oscillators<br>
                     \( r_1 \) : Order Parameter<br>
                 </p>
+            </div>
 
+            <!-- RHS: Simulations -->
+            <div class="rhs w3-container">
                 <h3>Simulation</h3>
                 <p>\( r_1 \)  v/s  \( K_1 \)</p>
                 <div class="form-container w3-container">
@@ -97,13 +100,8 @@
                         <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
                     {% endif %}
                 </div>
-            </div>
 
-            <!-- RHS: Theta vs Time Plot -->
-            <div class="rhs w3-container">
-                <h3>Simulation</h3>
                 <p>&theta; v/s \( t \)</p>
-
                 <div class="rhs-content">
                     <div class="form-container w3-container">
                         <form action="/second_simulation" method="post" onsubmit="return handleFormSubmit(event, 'animate-loader')" class="w3-form">
@@ -141,16 +139,15 @@
 </div>
 
 <!-- Footer -->
-    <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
-      <div class="w3-xlarge">
-        <a href="https://www.instagram.com/your_instagram_handle" target="_blank" class="fa fa-instagram w3-hover-opacity"></a>
-        <a href="https://github.com/your_github_username" target="_blank" class="fa fa-github w3-hover-opacity"></a>
-        <a href="https://www.linkedin.com/in/your_linkedin_profile" target="_blank" class="fa fa-linkedin w3-hover-opacity"></a>
-      </div>
-      <p>Contact: +91 81398 52298 | Email: <a href="mailto:savansajith2002@gmail.com">savansajith2002@gmail.com</a></p>
-      <p>Developed by <a href="#" class="w3-hover-text-green">Savan Sajith</a></p>
-    </footer>
-
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+  <div class="w3-xlarge">
+    <a href="https://www.instagram.com/your_instagram_handle" target="_blank" class="fa fa-instagram w3-hover-opacity"></a>
+    <a href="https://github.com/your_github_username" target="_blank" class="fa fa-github w3-hover-opacity"></a>
+    <a href="https://www.linkedin.com/in/your_linkedin_profile" target="_blank" class="fa fa-linkedin w3-hover-opacity"></a>
+  </div>
+  <p>Contact: +91 81398 52298 | Email: <a href="mailto:savansajith2002@gmail.com">savansajith2002@gmail.com</a></p>
+  <p>Developed by <a href="#" class="w3-hover-text-green">Savan Sajith</a></p>
+</footer>
 
 <script>
     function handleFormSubmit(event, loaderId) {
