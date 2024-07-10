@@ -89,10 +89,11 @@ h3 {
 .form-container button {
   padding: 10px 20px;
   font-size: 1em;
-  background-color: #007bff;
+  background-color: #0056b3;  /* Updated to a dark blue shade */
   color: #fff;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .form-group {
@@ -130,7 +131,7 @@ h3 {
   margin: 10px auto;
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #007bff;
+  border-top: 5px solid #0056b3;  /* Updated to match the button color */
   width: 30px;
   height: 30px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
