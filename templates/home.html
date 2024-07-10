@@ -35,91 +35,100 @@
 
     <!-- Main Content -->
     <div id="container" class="w3-container">
-        <h3 class="intro">Description</h3>
-        {% include 'intro.html' %}
-        <h3>Kuramoto Oscillator Equations</h3>
-        <div class="equation">
-            \[{{ latex_eq1 }}\]
-            \[{{ latex_eq2 }}\]
-        </div>
-        <p>
-            \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
-            \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
-            \( K_1 \) : Coupling strength for Pairwise Interactions<br>
-            \( K_2 \) : Coupling strength for Higher-order Interactions<br>
-            \( N \) : Number of Oscillators<br>
-            \( r_1 \) : Order Parameter<br>
-            \( \psi_1 \) : Mean Phase of Oscillators<br>
-        </p>
-
-        <h3>Simulation</h3>
-        <p>a) \( r_1 \)  v/s  \( K_1 \)</p>
-        <div class="form-container w3-container">
-            <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')" class="w3-form">
-                <div class="form-row w3-row">
-                    <div class="form-group w3-col">
-                        <label for="k1_start">\( K_1 \) start:</label>
-                        <input type="number" step="any" id="k1_start" name="k1_start" value="{{ request.form.k1_start }}" required class="w3-input">
-                    </div>
-                    <div class="form-group w3-col">
-                        <label for="k1_end">\( K_1 \) end:</label>
-                        <input type="number" step="any" id="k1_end" name="k1_end" value="{{ request.form.k1_end }}" required class="w3-input">
-                    </div>
-                    <div class="form-group w3-col">
-                        <label for="k2">\( K_2 \):</label>
-                        <input type="number" step="any" id="k2" name="k2" value="{{ request.form.k2 }}" required class="w3-input">
-                    </div>
-                    <div class="form-group w3-col">
-                        <label for="n">\( N \):</label>
-                        <input type="number" id="n" name="n" value="{{ request.form.n }}" required class="w3-input">
-                    </div>
-                    <div class="form-group w3-col">
-                        <label for="dk">\( dk \):</label>
-                        <input type="number" step="any" id="dk" name="dk" value="{{ request.form.dk }}" required class="w3-input">
-                    </div>
+        <div class="content-row">
+            <!-- LHS: Description and Equations -->
+            <div class="lhs w3-container">
+                <h3 class="intro">Description</h3>
+                {% include 'intro.html' %}
+                <h3>Kuramoto Oscillator Equations</h3>
+                <div class="equation">
+                    \[{{ latex_eq1 }}\]
+                    \[{{ latex_eq2 }}\]
                 </div>
-                <div class="button-container w3-center">
-                    <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-blue">Plot</button>
-                    <div class="loader" id="plot-loader"></div>
+                <p>
+                    \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
+                    \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
+                    \( K_1 \) : Coupling strength for Pairwise Interactions<br>
+                    \( K_2 \) : Coupling strength for Higher-order Interactions<br>
+                    \( N \) : Number of Oscillators<br>
+                    \( r_1 \) : Order Parameter<br>
+                    \( \psi_1 \) : Mean Phase of Oscillators<br>
+                </p>
+
+                <h3>Simulation</h3>
+                <p>a) \( r_1 \)  v/s  \( K_1 \)</p>
+                <div class="form-container w3-container">
+                    <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')" class="w3-form">
+                        <div class="form-row w3-row">
+                            <div class="form-group w3-col">
+                                <label for="k1_start">\( K_1 \) start:</label>
+                                <input type="number" step="any" id="k1_start" name="k1_start" value="{{ request.form.k1_start }}" required class="w3-input">
+                            </div>
+                            <div class="form-group w3-col">
+                                <label for="k1_end">\( K_1 \) end:</label>
+                                <input type="number" step="any" id="k1_end" name="k1_end" value="{{ request.form.k1_end }}" required class="w3-input">
+                            </div>
+                            <div class="form-group w3-col">
+                                <label for="k2">\( K_2 \):</label>
+                                <input type="number" step="any" id="k2" name="k2" value="{{ request.form.k2 }}" required class="w3-input">
+                            </div>
+                            <div class="form-group w3-col">
+                                <label for="n">\( N \):</label>
+                                <input type="number" id="n" name="n" value="{{ request.form.n }}" required class="w3-input">
+                            </div>
+                            <div class="form-group w3-col">
+                                <label for="dk">\( dk \):</label>
+                                <input type="number" step="any" id="dk" name="dk" value="{{ request.form.dk }}" required class="w3-input">
+                            </div>
+                        </div>
+                        <div class="button-container w3-center">
+                            <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-blue">Plot</button>
+                            <div class="loader" id="plot-loader"></div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
 
-        <div class="plot-container1 w3-center" id="plot">
-            {% if plot_url %}
-                <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
-            {% endif %}
-        </div>
-
-        <p>b) &theta; v/s \( t \)</p>
-
-        <div class="form-container w3-container">
-            <form action="/second_simulation" method="post" onsubmit="return handleFormSubmit(event, 'animate-loader')" class="w3-form">
-                <div class="form-row w3-row">
-                    <div class="form-group w3-col">
-                        <label for="n2">\( N \):</label>
-                        <input type="number" id="n2" name="n2" value="{{ request.form.n2 }}" required class="w3-input">
-                    </div>
-                    <div class="form-group w3-col">
-                        <label for="k1_2">\( K_1 \):</label>
-                        <input type="number" step="any" id="k1_2" name="k1_2" value="{{ request.form.k1_2 }}" required class="w3-input">
-                    </div>
-                    <div class="form-group w3-col">
-                        <label for="k2_2">\( K_2 \):</label>
-                        <input type="number" step="any" id="k2_2" name="k2_2" value="{{ request.form.k2_2 }}" required class="w3-input">
-                    </div>
+                <div class="plot-container1 w3-center" id="plot">
+                    {% if plot_url %}
+                        <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
+                    {% endif %}
                 </div>
-                <div class="button-container w3-center">
-                    <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-blue">Animate</button>
-                    <div class="loader" id="animate-loader"></div>
-                </div>
-            </form>
-        </div>
+            </div>
 
-        <div class="plot-container2 w3-center" id="second_plot">
-            {% if second_plot_url %}
-                <img src="data:image/gif;base64,{{ second_plot_url }}" alt="Second Simulation Animation">
-            {% endif %}
+            <!-- RHS: Theta vs Time Plot -->
+            <div class="rhs w3-container">
+                <h3>Simulation</h3>
+                <p>b) &theta; v/s \( t \)</p>
+
+                <div class="form-container w3-container">
+                    <form action="/second_simulation" method="post" onsubmit="return handleFormSubmit(event, 'animate-loader')" class="w3-form">
+                        <div class="form-row w3-row">
+                            <div class="form-group w3-col">
+                                <label for="n2">\( N \):</label>
+                                <input type="number" id="n2" name="n2" value="{{ request.form.n2 }}" required class="w3-input">
+                            </div>
+                            <div class="form-group w3-col">
+                                <label for="k1_2">\( K_1 \):</label>
+                                <input type="number" step="any" id="k1_2" name="k1_2" value="{{ request.form.k1_2 }}" required class="w3-input">
+                            </div>
+                            <div class="form-group w3-col">
+                                <label for="k2_2">\( K_2 \):</label>
+                                <input type="number" step="any" id="k2_2" name="k2_2" value="{{ request.form.k2_2 }}" required class="w3-input">
+                            </div>
+                        </div>
+                        <div class="button-container w3-center">
+                            <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-blue">Animate</button>
+                            <div class="loader" id="animate-loader"></div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="plot-container2 w3-center" id="second_plot">
+                    {% if second_plot_url %}
+                        <img src="data:image/gif;base64,{{ second_plot_url }}" alt="Second Simulation Animation">
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 

@@ -31,11 +31,23 @@ h3 {
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 90%;
 }
 
 .equation p {
   text-align: center;
+}
+
+.content-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.lhs, .rhs {
+  flex: 1;
+  min-width: 45%;
+  margin: 10px;
 }
 
 .form-container {
@@ -104,9 +116,7 @@ h3 {
 .plot-container2 {
   text-align: left;
   margin-top: 30px;
-  width: 30%;
-  margin-left: 225px;
-  margin-right: auto;
+  width: 100%;
 }
 
 .plot-container2 img {
