@@ -68,9 +68,9 @@ def simulate_and_animate(n, k1, k2):
             draw = ImageDraw.Draw(img)
 
             for i in range(n):
-                x = 300 + 200 * np.cos(theta[i])
-                y = 300 + 200 * np.sin(theta[i])
-                draw.ellipse((x-5, y-5, x+5, y+5), fill=colors[i])
+                x = 300 + 100 * np.cos(theta[i]) 
+                y = 300 + 100 * np.sin(theta[i])
+                draw.ellipse((x-3, y-3, x+3, y+3), fill=colors[i])
 
             frames.append(img)
 
