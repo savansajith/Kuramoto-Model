@@ -89,8 +89,8 @@ h3 {
 .form-container button {
   padding: 10px 20px;
   font-size: 1em;
-  background-color: #0056b3;  /* Updated to a dark blue shade */
-  color: #fff;
+  background-color: #d3d3d3;  /* Updated to a light grey shade */
+  color: #333;  /* Changed text color to dark for better contrast */
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -131,7 +131,7 @@ h3 {
   margin: 10px auto;
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #0056b3;  /* Updated to match the button color */
+  border-top: 5px solid #d3d3d3;  /* Updated to match the button color */
   width: 30px;
   height: 30px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
