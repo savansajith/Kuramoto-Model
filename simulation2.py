@@ -64,7 +64,7 @@ def simulate_and_animate(n, k1, k2):
 
     for it in range(1, nite + 1):
         if it % 10 == 0:  # Save every 10th frame to reduce file size
-            img = Image.new('RGB', (600, 600), 'white')
+            img = Image.new('RGB', (600, 600), '#f8f9fa')
             draw = ImageDraw.Draw(img)
 
             for i in range(n):
@@ -101,7 +101,7 @@ def simulate_and_animate(n, k1, k2):
 def simulate_and_save_animation(n, k1, k2):
     frames = simulate_and_animate(n, k1, k2)
     with tempfile.NamedTemporaryFile(delete=False, suffix='.gif') as tmpfile:
-        frames[0].save(tmpfile.name, save_all=True, append_images=frames[1:], optimize=False, duration=50, loop = 1)
+        frames[0].save(tmpfile.name, save_all=True, append_images=frames[1:], optimize=False, duration=100, loop = 1)
         with open(tmpfile.name, 'rb') as f:
             gif_data = f.read()
     os.remove(tmpfile.name)

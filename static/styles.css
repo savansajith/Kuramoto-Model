@@ -46,7 +46,7 @@ h3 {
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 45%;
+  width: 35%;
 }
 
 .equation p {
@@ -79,7 +79,7 @@ h3 {
 
 .form-container .form-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 10px;
 }
@@ -104,8 +104,8 @@ h3 {
 .form-container button {
   padding: 10px 20px;
   font-size: 1em;
-  background-color: #d3d3d3;  /* Updated to a light grey shade */
-  color: #333;  /* Changed text color to dark for better contrast */
+  background-color: #d3d3d3;  
+  color: #333;  
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -123,10 +123,7 @@ h3 {
 }
 
 .plot-container1 img {
-  max-width: 85%;
-  height: auto;
-  border: 1.5px solid #000;
-  border-radius: 10px;
+  border: none
 }
 
 .plot-container2 {
@@ -136,9 +133,7 @@ h3 {
 }
 
 .plot-container2 img {
-  max-width: 100%;
-  height: auto;
-  border: 1.5px solid #000;
+  border: none
 }
 
 .loader {
@@ -146,10 +141,10 @@ h3 {
   margin: 10px auto;
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #d3d3d3;  /* Updated to match the button color */
+  border-top: 5px solid #d3d3d3;
   width: 30px;
   height: 30px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
 
