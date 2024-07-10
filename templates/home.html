@@ -27,8 +27,8 @@
         <div class="w3-padding-32">
             <div class="w3-bar w3-border">
                 <a href="#" class="w3-bar-item w3-button">Home</a>
-                <a href="#" class="w3-bar-item w3-button w3-light-grey">Portfolio</a>
-                <a href="#" class="w3-bar-item w3-button">Contact</a>
+                <a href="#" class="w3-bar-item w3-button w3-light-grey">Contact</a>
+                <a href="#" class="w3-bar-item w3-button">Learn More</a>
             </div>
         </div>
     </header>
@@ -41,9 +41,8 @@
                 <h3 class="intro">Description</h3>
                 {% include 'intro.html' %}
                 <h3>Kuramoto Oscillator Equations</h3>
-                <div class="equation">
+                <div class="equation1">
                     \[{{ latex_eq1 }}\]
-                    \[{{ latex_eq2 }}\]
                 </div>
                 <p>
                     \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
@@ -51,8 +50,13 @@
                     \( K_1 \) : Coupling strength for Pairwise Interactions<br>
                     \( K_2 \) : Coupling strength for Higher-order Interactions<br>
                     \( N \) : Number of Oscillators<br>
-                    \( r_1 \) : Order Parameter<br>
+                </p>
+                <div class="equation2">
+                    \[{{ latex_eq2 }}\]
+                </div>
+                <p>
                     \( \psi_1 \) : Mean Phase of Oscillators<br>
+                    \( r_1 \) : Order Parameter<br>
                 </p>
 
                 <h3>Simulation</h3>
@@ -138,8 +142,6 @@
 <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
   <i class="fa fa-facebook-official w3-hover-opacity"></i>
   <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
   <i class="fa fa-twitter w3-hover-opacity"></i>
   <i class="fa fa-linkedin w3-hover-opacity"></i>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>

@@ -19,7 +19,7 @@ h3 {
   font-size: 1.8em; 
 }
 
-.equation {
+.equation1 {
   font-size: 1.3em;
   padding: 20px;
   text-align: center;
@@ -31,7 +31,22 @@ h3 {
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 100%;
+}
+
+.equation2 {
+  font-size: 1.3em;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%;
 }
 
 .equation p {
