@@ -26,113 +26,36 @@
         <h1 class="w3-xlarge">SIMULATIONS OF KURAMOTO OSCILLATORS</h1>
         <div class="w3-padding-32">
             <div class="w3-bar w3-border">
-                <a href="#" class="w3-bar-item w3-button">Home</a>
-                <a href="#" class="w3-bar-item w3-button w3-light-grey">Contact</a>
-                <a href="#" class="w3-bar-item w3-button">Learn More</a>
+                <a href="/" class="w3-bar-item w3-button w3-light-grey">Home</a>
+                <a href="/simulation" class="w3-bar-item w3-button">Simulation</a>
+                <a href="https://scholar.google.co.in/citations?hl=en&user=vlEHYwYAAAAJ" class="w3-bar-item w3-button">Learn More</a>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <div id="container" class="w3-container">
-        <div class="content-row">
-            <!-- LHS: Description and Equations -->
-            <div class="lhs w3-container">
-                <h3 class="intro">Description</h3>
-                {% include 'intro.html' %}
-                <h3>Kuramoto Oscillator Equations</h3>
-                <div class="equation1">
-                    \[{{ latex_eq1 }}\]
-                </div>
-                <p>
-                    \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
-                    \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
-                    \( K_1 \) : Coupling strength for Pairwise Interactions<br>
-                    \( K_2 \) : Coupling strength for Higher-order Interactions<br>
-                    \( N \) : Number of Oscillators<br>
-                </p>
-                <div class="equation2">
-                    \[{{ latex_eq2 }}\]
-                </div>
-                <p>
-                    \( \psi_1 \) : Mean Phase of Oscillators<br>
-                    \( r_1 \) : Order Parameter<br>
-                </p>
+    <div id="container" class="w3-container" style="text-align: center;">
+        <div class="lhs w3-container" style="display: inline-block; text-align: left;">
+            <h3 class="intro">Description</h3>
+            {% include 'intro.html' %}
+            <h3>Kuramoto Oscillator Equations</h3>
+            <div class="equation1">
+                \[{{ latex_eq1 }}\]
             </div>
-
-            <!-- RHS: Simulations -->
-            <div class="rhs w3-container">
-                <h3>Simulation</h3>
-                <p>\( r_1 \)  v/s  \( K_1 \)</p>
-                <div class="form-container w3-container">
-                    <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')" class="w3-form">
-                        <div class="form-row w3-row">
-                            <div class="form-group w3-col">
-                                <label for="k1_start">\( K_1 \) start:</label>
-                                <input type="number" step="any" id="k1_start" name="k1_start" value="{{ request.form.k1_start }}" required class="w3-input">
-                            </div>
-                            <div class="form-group w3-col">
-                                <label for="k1_end">\( K_1 \) end:</label>
-                                <input type="number" step="any" id="k1_end" name="k1_end" value="{{ request.form.k1_end }}" required class="w3-input">
-                            </div>
-                            <div class="form-group w3-col">
-                                <label for="k2">\( K_2 \):</label>
-                                <input type="number" step="any" id="k2" name="k2" value="{{ request.form.k2 }}" required class="w3-input">
-                            </div>
-                            <div class="form-group w3-col">
-                                <label for="n">\( N \):</label>
-                                <input type="number" id="n" name="n" value="{{ request.form.n }}" required class="w3-input">
-                            </div>
-                            <div class="form-group w3-col">
-                                <label for="dk">\( dk \):</label>
-                                <input type="number" step="any" id="dk" name="dk" value="{{ request.form.dk }}" required class="w3-input">
-                            </div>
-                        </div>
-                        <div class="button-container w3-center">
-                            <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-light-grey">Start</button>
-                            <div class="loader" id="plot-loader"></div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="plot-container1 w3-center" id="plot">
-                    {% if plot_url %}
-                        <img src="data:image/png;base64,{{ plot_url }}" alt="Plot of r1 v/s K1">
-                    {% endif %}
-                </div>
-
-                <p>&theta; v/s \( t \)</p>
-                <div class="rhs-content">
-                    <div class="form-container w3-container">
-                        <form action="/second_simulation" method="post" onsubmit="return handleFormSubmit(event, 'animate-loader')" class="w3-form">
-                            <div class="form-row w3-row">
-                                <div class="form-group w3-col">
-                                    <label for="n2">\( N \):</label>
-                                    <input type="number" id="n2" name="n2" value="{{ request.form.n2 }}" required class="w3-input">
-                                </div>
-                                <div class="form-group w3-col">
-                                    <label for="k1_2">\( K_1 \):</label>
-                                    <input type="number" step="any" id="k1_2" name="k1_2" value="{{ request.form.k1_2 }}" required class="w3-input">
-                                </div>
-                                <div class="form-group w3-col">
-                                    <label for="k2_2">\( K_2 \):</label>
-                                    <input type="number" step="any" id="k2_2" name="k2_2" value="{{ request.form.k2_2 }}" required class="w3-input">
-                                </div>
-                            </div>
-                            <div class="button-container w3-center">
-                                <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-light-grey">Start</button>
-                                <div class="loader" id="animate-loader"></div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="plot-container2 w3-center" id="second_plot">
-                        {% if second_plot_url %}
-                            <img src="data:image/gif;base64,{{ second_plot_url }}" alt="Second Simulation Animation">
-                        {% endif %}
-                    </div>
-                </div>
+            <p>
+                \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
+                \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
+                \( K_1 \) : Coupling strength for Pairwise Interactions<br>
+                \( K_2 \) : Coupling strength for Higher-order Interactions<br>
+                \( N \) : Number of Oscillators<br>
+            </p>
+            <div class="equation2">
+                \[{{ latex_eq2 }}\]
             </div>
+            <p>
+                \( \psi_1 \) : Mean Phase of Oscillators<br>
+                \( r_1 \) : Order Parameter<br>
+            </p>
         </div>
     </div>
 
@@ -145,17 +68,8 @@
     <a href="https://github.com/your_github_username" target="_blank" class="fa fa-github w3-hover-opacity"></a>
     <a href="https://www.linkedin.com/in/your_linkedin_profile" target="_blank" class="fa fa-linkedin w3-hover-opacity"></a>
   </div>
-  <p>Contact: +91 81398 52298 | Email: <a href="mailto:savansajith2002@gmail.com">savansajith2002@gmail.com</a></p>
-  <p>Developed by <a href="#" class="w3-hover-text-green">Savan Sajith</a></p>
+  <p>Developed by <a class="w3-hover-text-green">Savan Sajith</a></p>
 </footer>
-
-<script>
-    function handleFormSubmit(event, loaderId) {
-        event.target.querySelector('button').disabled = true;
-        document.getElementById(loaderId).style.display = 'block';
-        return true;
-    }
-</script>
 
 </body>
 </html>
