@@ -1,7 +1,10 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
+  background-image: url('/static/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #f8f9fa;
   margin: 20px;
   padding: 10px;
   line-height: 1.6;
@@ -10,47 +13,44 @@ body {
 h1 {
   text-align: center;
   margin-top: 0px;
-  font-size: 2.5em; 
+  font-size: 2.5em;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 h3 {
-  text-align: left; 
+  text-align: left;
   margin-top: 30px;
-  font-size: 1.8em; 
+  font-size: 1.8em;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px #000000;
 }
 
-.equation1 {
-  font-size: 1.3em;
+.boxed-text {
   padding: 20px;
-  text-align: center;
-  border: 1px solid #ccc;
+  text-align: left;
+  margin: 30px auto;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
   border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+  color: #f8f9fa;
 }
 
+.equation1,
 .equation2 {
-  font-size: 1.3em;
+  font-size: 1.25em;
   padding: 20px;
   text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 35%;
+  margin: 30px auto;
+  width: 50%;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px #000000;
 }
 
 .equation p {
   text-align: center;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px #000000;
 }
 
 .content-row {
@@ -59,7 +59,8 @@ h3 {
   justify-content: space-between;
 }
 
-.lhs, .rhs {
+.lhs,
+.rhs {
   flex: 1;
   min-width: 45%;
   margin: 10px;
@@ -86,6 +87,7 @@ h3 {
 
 .form-container label {
   margin: 5px 0;
+  color: #f8f9fa;
 }
 
 .form-container input {
@@ -104,8 +106,8 @@ h3 {
 .form-container button {
   padding: 10px 20px;
   font-size: 1em;
-  background-color: #d3d3d3;  
-  color: #333;  
+  background-color: #d3d3d3;
+  color: #333;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -123,7 +125,7 @@ h3 {
 }
 
 .plot-container1 img {
-  border: none
+  border: none;
 }
 
 .plot-container2 {
@@ -133,7 +135,7 @@ h3 {
 }
 
 .plot-container2 img {
-  border: none
+  border: none;
 }
 
 .loader {
@@ -154,8 +156,8 @@ h3 {
 }
 
 @keyframes spin {
-   0% { transform: rotate(0deg); }
-   100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 #container {

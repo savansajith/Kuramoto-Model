@@ -36,26 +36,30 @@
     <!-- Main Content -->
     <div id="container" class="w3-container" style="text-align: center;">
         <div class="lhs w3-container" style="display: inline-block; text-align: left;">
-            <h3 class="intro">Description</h3>
-            {% include 'intro.html' %}
-            <h3>Kuramoto Oscillator Equations</h3>
-            <div class="equation1">
-                \[{{ latex_eq1 }}\]
+            <div class="boxed-text">
+                <h3 class="intro">Description</h3>
+                {% include 'intro.html' %}
             </div>
-            <p>
-                \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
-                \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
-                \( K_1 \) : Coupling strength for Pairwise Interactions<br>
-                \( K_2 \) : Coupling strength for Higher-order Interactions<br>
-                \( N \) : Number of Oscillators<br>
-            </p>
-            <div class="equation2">
-                \[{{ latex_eq2 }}\]
+            <div class="boxed-text">
+                <h3>Kuramoto Oscillator Equations</h3>
+                <div class="equation1">
+                    \[{{ latex_eq1 }}\]
+                </div>
+                <p>
+                    \( \theta_i \) : Phase of i<sup>th</sup> Oscillator<br>
+                    \( \omega_i \) : Natural Frequency of i<sup>th</sup> Oscillator<br>
+                    \( K_1 \) : Coupling strength for Pairwise Interactions<br>
+                    \( K_2 \) : Coupling strength for Higher-order Interactions<br>
+                    \( N \) : Number of Oscillators<br>
+                </p>
+                <div class="equation2">
+                    \[{{ latex_eq2 }}\]
+                </div>
+                <p>
+                    \( \psi_1 \) : Mean Phase of Oscillators<br>
+                    \( r_1 \) : Order Parameter<br>
+                </p>
             </div>
-            <p>
-                \( \psi_1 \) : Mean Phase of Oscillators<br>
-                \( r_1 \) : Order Parameter<br>
-            </p>
         </div>
     </div>
 
