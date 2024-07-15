@@ -114,23 +114,32 @@
 
 </div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
-  <div class="w3-xlarge">
-    <a href="https://www.instagram.com/your_instagram_handle" target="_blank" class="fa fa-instagram w3-hover-opacity"></a>
-    <a href="https://github.com/your_github_username" target="_blank" class="fa fa-github w3-hover-opacity"></a>
-    <a href="https://www.linkedin.com/in/your_linkedin_profile" target="_blank" class="fa fa-linkedin w3-hover-opacity"></a>
-  </div>
-  <p>Developed by <a class="w3-hover-text-green">Savan Sajith</a></p>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="social-icon">
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-twitter"></ion-icon>
+            </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-linkedin"></ion-icon>
+            </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
+        </ul>
+        <ul class="menu">
+            <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+        </ul>
+        <p>&copy;2024 Savan Sajith | Supervised by Dr. Sarika Jalan | All Rights Reserved</p>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-<script>
-    function handleFormSubmit(event, loaderId) {
-        event.target.querySelector('button').disabled = true;
-        document.getElementById(loaderId).style.display = 'block';
-        return true;
-    }
-</script>
-
-</body>
-</html>
+    </body>
+    </html>
