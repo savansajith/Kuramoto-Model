@@ -1,44 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuramoto Model Simulations</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;700;900&display=swap">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    <style>
-        body, h1 {font-family: "Raleway", Arial, sans-serif}
-        h1 {letter-spacing: 6px}
-        .w3-row-padding img {margin-bottom: 12px}
-    </style>
-</head>
-<body>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-content" style="max-width:1500px">
-
-    <!-- Header -->
-    <header class="w3-panel w3-center w3-opacity" style="padding:128px 16px">
-        <h1 class="w3-xlarge">SIMULATIONS OF KURAMOTO OSCILLATORS</h1>
-        <div class="w3-padding-32">
-            <div class="w3-bar w3-border">
-                <a href="/" class="w3-bar-item w3-button">Home</a>
-                <a href="#" class="w3-bar-item w3-button w3-light-grey">Simulation</a>
-                <a href="https://scholar.google.co.in/citations?hl=en&user=vlEHYwYAAAAJ" target="_blank" class="w3-bar-item w3-button">Learn More</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
+<!-- Main Content -->
     <div id="container" class="w3-container">
         <div class="content-row">
-            <!-- LHS: Description and Equations -->
             <div class="lhs w3-container">
-                <h3>Simulation</h3>
+                <h3>Simulations</h3>
                 <p>\( r_1 \)  v/s  \( K_1 \)</p>
                 <div class="form-container w3-container">
                     <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')" class="w3-form">
@@ -113,33 +77,3 @@
     </div>
 
 </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <ul class="social-icon">
-            <li class="social-icon__item"><a class="social-icon__link" href="#">
-                <ion-icon name="logo-facebook"></ion-icon>
-            </a></li>
-            <li class="social-icon__item"><a class="social-icon__link" href="#">
-                <ion-icon name="logo-twitter"></ion-icon>
-            </a></li>
-            <li class="social-icon__item"><a class="social-icon__link" href="#">
-                <ion-icon name="logo-linkedin"></ion-icon>
-            </a></li>
-            <li class="social-icon__item"><a class="social-icon__link" href="#">
-                <ion-icon name="logo-instagram"></ion-icon>
-            </a></li>
-        </ul>
-        <ul class="menu">
-            <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-        </ul>
-        <p>&copy;2024 Savan Sajith | Supervised by Dr. Sarika Jalan | All Rights Reserved</p>
-    </footer>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-</body>
-</html>

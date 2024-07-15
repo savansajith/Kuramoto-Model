@@ -27,7 +27,7 @@
         <div class="w3-padding-32">
             <div class="w3-bar w3-border">
                 <a href="/" class="w3-bar-item w3-button w3-light-grey">Home</a>
-                <a href="/simulation" class="w3-bar-item w3-button">Simulation</a>
+                <a href="/report" class="w3-bar-item w3-button">Report</a>
                 <a href="https://scholar.google.co.in/citations?hl=en&user=vlEHYwYAAAAJ" target="_blank" class="w3-bar-item w3-button">Learn More</a>
             </div>
         </div>
@@ -37,7 +37,7 @@
     <div id="container" class="w3-container" style="text-align: center;">
         <div class="lhs w3-container" style="display: inline-block; text-align: left;">
             <div class="boxed-text">
-                <h3 class="intro">Description</h3>
+                <h3 class="intro">Introduction</h3>
                 {% include 'intro.html' %}
             </div>
             <div class="boxed-text">
@@ -61,6 +61,9 @@
                 </p>
             </div>
         </div>
+    </div>
+    <div class="boxed-text">
+        {% include "simulations.html" %}
     </div>
 
 </div>
