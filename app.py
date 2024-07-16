@@ -5,15 +5,13 @@ import base64
 
 app = Flask(__name__)
 
+# Define the LaTeX equations at the top
+latex_eq1 = r"\frac{d\theta_i}{dt} = \omega_i + \frac{K_1}{N} \sum_{j=1}^{N} \sin\left(\theta_j - \theta_i\right) + \frac{K_2}{N^2} \sum_{j=1}^{N} \sum_{k=1}^{N} \sin\left(2\theta_j - \theta_k - \theta_i\right)"
+latex_eq2 = r"r_1 e^{i\psi_1} = \frac{1}{N} \sum_{j=1}^{N} e^{i\theta_j}"
+
 @app.route('/')
 def home():
-    latex_eq1 = r"\frac{d\theta_i}{dt} = \omega_i + \frac{K_1}{N} \sum_{j=1}^{N} \sin\left(\theta_j - \theta_i\right) + \frac{K_2}{N^2} \sum_{j=1}^{N} \sum_{k=1}^{N} \sin\left(2\theta_j - \theta_k - \theta_i\right)"
-    latex_eq2 = r"r_1 e^{i\psi_1} = \frac{1}{N} \sum_{j=1}^{N} e^{i\theta_j}"
     return render_template("home.html", latex_eq1=latex_eq1, latex_eq2=latex_eq2)
-
-@app.route('/simulation')
-def simulation():
-    return render_template("simulation.html")
 
 @app.route('/plot', methods=['POST'])
 def plot():
@@ -31,7 +29,7 @@ def plot():
         results = simulator.simulate()
         plot_url = plot_k1_vs_r1(results)
 
-        return render_template("simulation.html", plot_url=plot_url)
+        return render_template("home.html", plot_url=plot_url, latex_eq1=latex_eq1, latex_eq2=latex_eq2)
     except Exception as e:
         return f"An error occurred: {e}\nPlease recheck your entered values."
 
@@ -46,7 +44,7 @@ def second_simulation():
 
         second_plot_url = base64.b64encode(gif_data).decode('utf-8')
 
-        return render_template("simulation.html", second_plot_url=second_plot_url)
+        return render_template("home.html", second_plot_url=second_plot_url, latex_eq1=latex_eq1, latex_eq2=latex_eq2)
     except Exception as e:
         return f"An error occurred: {e}\nPlease recheck your entered values."
 
