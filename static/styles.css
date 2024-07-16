@@ -153,6 +153,7 @@ h3 {
   align-items: center;
   flex-direction: column;
   text-align: center;
+  padding:100px
 }
 
 footer {
