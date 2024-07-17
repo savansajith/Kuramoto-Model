@@ -10,23 +10,24 @@ body {
 h1 {
   text-align: center;
   margin-top: 0px;
-  font-size: 2.5em; 
+  font-size: 2.5em;
 }
 
 h3 {
-  text-align: left; 
+  text-align: left;
   margin-top: 30px;
-  font-size: 1.8em; 
+  font-size: 1.8em;
 }
 
-.equation1, .equation2 {
+.equation1,
+.equation2 {
   font-size: 1.3em;
   padding: 20px;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
   margin-bottom: 30px;
   margin-left: auto;
@@ -93,8 +94,8 @@ h3 {
 .form-container button {
   padding: 10px 20px;
   font-size: 1em;
-  background-color: #d3d3d3;  
-  color: #333;  
+  background-color: #d3d3d3;
+  color: #333;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -133,18 +134,28 @@ h3 {
   border-top: 5px solid #d3d3d3;
   width: 30px;
   height: 30px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+      -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+      -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-   0% { transform: rotate(0deg); }
-   100% { transform: rotate(360deg); }
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
 }
 
 #container {
@@ -196,4 +207,17 @@ footer {
 
 .developer-link:hover {
   text-decoration: underline;
+}
+
+body,
+h1 {
+  font-family: "Raleway", Arial, sans-serif
+}
+
+h1 {
+  letter-spacing: 6px
+}
+
+.w3-row-padding img {
+  margin-bottom: 12px
 }
