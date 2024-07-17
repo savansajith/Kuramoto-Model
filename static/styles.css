@@ -1,3 +1,98 @@
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --hue: 223;
+  --bg: hsl(var(--hue), 90%, 95%);
+  --fg: hsl(var(--hue), 90%, 5%);
+  --trans-dur: 0.3s;
+  font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font: 1em/1.5 sans-serif;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  transition: background-color var(--trans-dur);
+}
+
+main {
+  padding: 1.5em 0;
+}
+
+.ip {
+  width: 4em;
+  height: 2em;
+}
+
+.ip__track {
+  stroke: hsl(var(--hue), 90%, 90%);
+  transition: stroke var(--trans-dur);
+}
+
+.ip__worm1,
+.ip__worm2 {
+  animation: worm1 2s linear infinite;
+}
+
+.ip__worm2 {
+  animation-name: worm2;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+      --bg: hsl(var(--hue), 90%, 5%);
+      --fg: hsl(var(--hue), 90%, 95%);
+  }
+
+  .ip__track {
+      stroke: hsl(var(--hue), 90%, 15%);
+  }
+}
+
+/* Animation */
+@keyframes worm1 {
+  from {
+      stroke-dashoffset: 0;
+  }
+
+  50% {
+      animation-timing-function: steps(1);
+      stroke-dashoffset: -358;
+  }
+
+  50.01% {
+      animation-timing-function: linear;
+      stroke-dashoffset: 358;
+  }
+
+  to {
+      stroke-dashoffset: 0;
+  }
+}
+
+@keyframes worm2 {
+  from {
+      stroke-dashoffset: 358;
+  }
+
+  50% {
+      stroke-dashoffset: 0;
+  }
+
+  to {
+      stroke-dashoffset: -358;
+  }
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #f8f9fa;
@@ -127,38 +222,6 @@ h3 {
   border: none;
 }
 
-.loader {
-  display: none;
-  margin: 10px auto;
-  border: 5px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 5px solid #d3d3d3;
-  width: 30px;
-  height: 30px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% {
-      -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-      -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-      transform: rotate(0deg);
-  }
-
-  100% {
-      transform: rotate(360deg);
-  }
-}
-
 #container {
   display: flex;
   justify-content: center;
@@ -218,7 +281,6 @@ h1 {
 .w3-row-padding img {
   margin-bottom: 12px;
 }
-
 
 header {
   padding: 50px 16px; /* Reduced padding */

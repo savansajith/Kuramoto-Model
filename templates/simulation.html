@@ -2,6 +2,19 @@
     <div class="content-row">
         <!-- Description and Equations -->
         <div class="content-section w3-container">
+            <script>
+                function handleFormSubmit(event, loaderId) {
+                    event.preventDefault();
+                    var loader = document.getElementById(loaderId + '-bar');
+                    loader.style.display = 'block';
+
+                    // Simulate form submission delay for demonstration
+                    setTimeout(function() {
+                        event.target.submit();
+                    }, 2000); // Adjust delay as needed
+                }
+            </script>
+
             <h4>\( r_1 \) v/s \( K_1 \)</h4>
             <div class="form-container w3-container">
                 <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')" class="w3-form">
@@ -29,7 +42,36 @@
                     </div>
                     <div class="button-container w3-center">
                         <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-light-grey">Start</button>
-                        <div class="loader" id="plot-loader"></div>
+                    </div>
+                    <div class="loader-bar-container" id="plot-loader-bar" style="display: none;">
+                        <main>
+                            <svg class="ip" viewBox="0 0 256 128" width="64px" height="32px" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#5ebd3e" />
+                                        <stop offset="33%" stop-color="#ffb900" />
+                                        <stop offset="67%" stop-color="#f78200" />
+                                        <stop offset="100%" stop-color="#e23838" />
+                                    </linearGradient>
+                                    <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
+                                        <stop offset="0%" stop-color="#e23838" />
+                                        <stop offset="33%" stop-color="#973999" />
+                                        <stop offset="67%" stop-color="#009cdf" />
+                                        <stop offset="100%" stop-color="#5ebd3e" />
+                                    </linearGradient>
+                                </defs>
+                                <g fill="none" stroke-linecap="round" stroke-width="16">
+                                    <g class="ip__track" stroke="#ddd">
+                                        <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                                        <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                                    </g>
+                                    <g stroke-dasharray="180 656">
+                                        <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                                        <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                                    </g>
+                                </g>
+                            </svg>
+                        </main>
                     </div>
                 </form>
             </div>
@@ -59,7 +101,36 @@
                     </div>
                     <div class="button-container w3-center">
                         <button type="submit" style="padding: 5px; font-size: 1em;" class="w3-button w3-light-grey">Start</button>
-                        <div class="loader" id="animate-loader"></div>
+                    </div>
+                    <div class="loader-bar-container" id="animate-loader-bar" style="display: none;">
+                        <main>
+                            <svg class="ip" viewBox="0 0 256 128" width="64px" height="32px" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#5ebd3e" />
+                                        <stop offset="33%" stop-color="#ffb900" />
+                                        <stop offset="67%" stop-color="#f78200" />
+                                        <stop offset="100%" stop-color="#e23838" />
+                                    </linearGradient>
+                                    <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
+                                        <stop offset="0%" stop-color="#e23838" />
+                                        <stop offset="33%" stop-color="#973999" />
+                                        <stop offset="67%" stop-color="#009cdf" />
+                                        <stop offset="100%" stop-color="#5ebd3e" />
+                                    </linearGradient>
+                                </defs>
+                                <g fill="none" stroke-linecap="round" stroke-width="16">
+                                    <g class="ip__track" stroke="#ddd">
+                                        <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                                        <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                                    </g>
+                                    <g stroke-dasharray="180 656">
+                                        <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                                        <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                                    </g>
+                                </g>
+                            </svg>
+                        </main>
                     </div>
                 </form>
             </div>
