@@ -10,12 +10,13 @@ body {
 h1 {
   text-align: center;
   margin-top: 0px;
+  margin-bottom: 10px; /* Reduced margin-bottom */
   font-size: 2.5em;
 }
 
 h3 {
   text-align: left;
-  margin-top: 30px;
+  margin-top: 10px; /* Reduced margin-top */
   font-size: 1.8em;
 }
 
@@ -164,7 +165,7 @@ h3 {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  padding: 175px;
+  padding: 150px 150px; /* Reduced padding */
 }
 
 footer {
@@ -205,19 +206,24 @@ footer {
   text-decoration: none;
 }
 
-.developer-link:hover {
-  text-decoration: underline;
-}
-
 body,
 h1 {
-  font-family: "Raleway", Arial, sans-serif
+  font-family: "Raleway", Arial, sans-serif;
 }
 
 h1 {
-  letter-spacing: 6px
+  letter-spacing: 6px;
 }
 
 .w3-row-padding img {
-  margin-bottom: 12px
+  margin-bottom: 12px;
+}
+
+
+header {
+  padding: 50px 16px; /* Reduced padding */
+}
+
+h3.intro {
+  margin-top: 0; /* Ensure no margin at the top */
 }
