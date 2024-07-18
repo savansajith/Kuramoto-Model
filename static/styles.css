@@ -1,98 +1,3 @@
-* {
-  border: 0;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --hue: 223;
-  --bg: hsl(var(--hue), 90%, 95%);
-  --fg: hsl(var(--hue), 90%, 5%);
-  --trans-dur: 0.3s;
-  font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--fg);
-  font: 1em/1.5 sans-serif;
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  transition: background-color var(--trans-dur);
-}
-
-main {
-  padding: 1.5em 0;
-}
-
-.ip {
-  width: 4em;
-  height: 2em;
-}
-
-.ip__track {
-  stroke: hsl(var(--hue), 90%, 90%);
-  transition: stroke var(--trans-dur);
-}
-
-.ip__worm1,
-.ip__worm2 {
-  animation: worm1 2s linear infinite;
-}
-
-.ip__worm2 {
-  animation-name: worm2;
-}
-
-/* Dark theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-      --bg: hsl(var(--hue), 90%, 5%);
-      --fg: hsl(var(--hue), 90%, 95%);
-  }
-
-  .ip__track {
-      stroke: hsl(var(--hue), 90%, 15%);
-  }
-}
-
-/* Animation */
-@keyframes worm1 {
-  from {
-      stroke-dashoffset: 0;
-  }
-
-  50% {
-      animation-timing-function: steps(1);
-      stroke-dashoffset: -358;
-  }
-
-  50.01% {
-      animation-timing-function: linear;
-      stroke-dashoffset: 358;
-  }
-
-  to {
-      stroke-dashoffset: 0;
-  }
-}
-
-@keyframes worm2 {
-  from {
-      stroke-dashoffset: 358;
-  }
-
-  50% {
-      stroke-dashoffset: 0;
-  }
-
-  to {
-      stroke-dashoffset: -358;
-  }
-}
-
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #f8f9fa;
@@ -220,6 +125,40 @@ h3 {
 
 .plot-container2 img {
   border: none;
+}
+
+.loader {
+  display: none;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  perspective: 500px;
+  margin: 10px auto;
+}
+
+.loader:before, .loader:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 48px;
+  background: #FF3D00;
+  border-radius: 0 24px 24px 0;
+  transform-origin: 0 0;
+  animation: flip 2s linear infinite alternate;
+}
+
+.loader:after {
+  left: 0;
+  border-radius: 24px 0 0 24px;
+  transform-origin: 100% 0;
+  animation-delay: 1s;
+}
+
+@keyframes flip {
+    0%, 10% { transform: rotateY(0deg); }
+    90%, 100% { transform: rotateY(-180deg); }
 }
 
 #container {
