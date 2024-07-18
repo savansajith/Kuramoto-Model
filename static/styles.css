@@ -129,8 +129,8 @@ h3 {
 
 .loader {
   display: none;
-  width: 48px;
-  height: 48px;
+  width: 24px; /* Reduced width */
+  height: 24px; /* Reduced height */
   position: relative;
   perspective: 500px;
   margin: 10px auto;
@@ -141,17 +141,17 @@ h3 {
   position: absolute;
   right: 0;
   top: 0;
-  width: 24px;
-  height: 48px;
-  background: #FF3D00;
-  border-radius: 0 24px 24px 0;
+  width: 12px; /* Reduced width */
+  height: 24px; /* Reduced height */
+  background: #333;
+  border-radius: 0 12px 12px 0; /* Reduced border-radius */
   transform-origin: 0 0;
   animation: flip 2s linear infinite alternate;
 }
 
 .loader:after {
   left: 0;
-  border-radius: 24px 0 0 24px;
+  border-radius: 12px 0 0 12px; /* Reduced border-radius */
   transform-origin: 100% 0;
   animation-delay: 1s;
 }
@@ -160,6 +160,7 @@ h3 {
     0%, 10% { transform: rotateY(0deg); }
     90%, 100% { transform: rotateY(-180deg); }
 }
+
 
 #container {
   display: flex;
