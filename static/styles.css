@@ -9,7 +9,7 @@ body {
 
 h1 {
   text-align: center;
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 10px; /* Reduced margin-bottom */
   font-size: 2.5em;
 }
@@ -160,7 +160,6 @@ h3 {
     0%, 10% { transform: rotateY(0deg); }
     90%, 100% { transform: rotateY(-180deg); }
 }
-
 
 #container {
   display: flex;

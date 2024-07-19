@@ -3,6 +3,7 @@
         <!-- Description and Equations -->
         <div class="content-section w3-container">
             <h4>\( r_1 \) v/s \( K_1 \)</h4>
+            {% include "sim1.html" %}
             <div class="form-container w3-container">
                 <form action="/plot" method="post" onsubmit="return handleFormSubmit(event, 'plot-loader')" class="w3-form">
                     <div class="form-row w3-row">
@@ -41,6 +42,7 @@
             </div>
 
             <h4>&theta; v/s \( t \)</h4>
+            {% include "sim2.html" %}
             <div class="form-container w3-container">
                 <form action="/second_simulation" method="post" onsubmit="return handleFormSubmit(event, 'animate-loader')" class="w3-form">
                     <div class="form-row w3-row">
